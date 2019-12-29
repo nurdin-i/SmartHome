@@ -1,5 +1,5 @@
 Analysis & Synthesis report for SmartHome
-Sun Dec 29 17:12:11 2019
+Sun Dec 29 20:54:12 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -13,10 +13,15 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. General Register Statistics
-  9. Post-Synthesis Netlist Statistics for Top Partition
- 10. Elapsed Time Per Partition
- 11. Analysis & Synthesis Messages
+  8. State Machine - |SmartHome|reciever:RECIEVER|state
+  9. General Register Statistics
+ 10. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 11. Parameter Settings for User Entity Instance: baud_rate_gen:BAUD_RATE_GEN
+ 12. Parameter Settings for User Entity Instance: reciever:RECIEVER
+ 13. Port Connectivity Checks: "main:MAIN"
+ 14. Post-Synthesis Netlist Statistics for Top Partition
+ 15. Elapsed Time Per Partition
+ 16. Analysis & Synthesis Messages
 
 
 
@@ -42,16 +47,16 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Dec 29 17:12:11 2019       ;
+; Analysis & Synthesis Status        ; Successful - Sun Dec 29 20:54:12 2019       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; SmartHome                                   ;
 ; Top-level Entity Name              ; SmartHome                                   ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 46                                          ;
-;     Total combinational functions  ; 46                                          ;
-;     Dedicated logic registers      ; 33                                          ;
-; Total registers                    ; 33                                          ;
-; Total pins                         ; 2                                           ;
+; Total logic elements               ; 50                                          ;
+;     Total combinational functions  ; 48                                          ;
+;     Dedicated logic registers      ; 24                                          ;
+; Total registers                    ; 24                                          ;
+; Total pins                         ; 6                                           ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -162,57 +167,73 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                      ;
-+----------------------------------+-----------------+------------------------+-------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path        ; Library ;
-+----------------------------------+-----------------+------------------------+-------------------------------------+---------+
-; SmartHome.v                      ; yes             ; User Verilog HDL File  ; E:/SmartHomeSystem/FPGA/SmartHome.v ;         ;
-; main.v                           ; yes             ; User Verilog HDL File  ; E:/SmartHomeSystem/FPGA/main.v      ;         ;
-+----------------------------------+-----------------+------------------------+-------------------------------------+---------+
++---------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                          ;
++----------------------------------+-----------------+------------------------+-----------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path            ; Library ;
++----------------------------------+-----------------+------------------------+-----------------------------------------+---------+
+; SmartHome.v                      ; yes             ; User Verilog HDL File  ; E:/SmartHomeSystem/FPGA/SmartHome.v     ;         ;
+; main.v                           ; yes             ; User Verilog HDL File  ; E:/SmartHomeSystem/FPGA/main.v          ;         ;
+; baud_rate_gen.v                  ; yes             ; User Verilog HDL File  ; E:/SmartHomeSystem/FPGA/baud_rate_gen.v ;         ;
+; reciever.v                       ; yes             ; User Verilog HDL File  ; E:/SmartHomeSystem/FPGA/reciever.v      ;         ;
++----------------------------------+-----------------+------------------------+-----------------------------------------+---------+
 
 
-+----------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                          ;
-+---------------------------------------------+------------------------+
-; Resource                                    ; Usage                  ;
-+---------------------------------------------+------------------------+
-; Estimated Total logic elements              ; 46                     ;
-;                                             ;                        ;
-; Total combinational functions               ; 46                     ;
-; Logic element usage by number of LUT inputs ;                        ;
-;     -- 4 input functions                    ; 11                     ;
-;     -- 3 input functions                    ; 2                      ;
-;     -- <=2 input functions                  ; 33                     ;
-;                                             ;                        ;
-; Logic elements by mode                      ;                        ;
-;     -- normal mode                          ; 15                     ;
-;     -- arithmetic mode                      ; 31                     ;
-;                                             ;                        ;
-; Total registers                             ; 33                     ;
-;     -- Dedicated logic registers            ; 33                     ;
-;     -- I/O registers                        ; 0                      ;
-;                                             ;                        ;
-; I/O pins                                    ; 2                      ;
-;                                             ;                        ;
-; Embedded Multiplier 9-bit elements          ; 0                      ;
-;                                             ;                        ;
-; Maximum fan-out node                        ; main:MAIN|LessThan0~12 ;
-; Maximum fan-out                             ; 33                     ;
-; Total fan-out                               ; 216                    ;
-; Average fan-out                             ; 2.60                   ;
-+---------------------------------------------+------------------------+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimated Total logic elements              ; 50        ;
+;                                             ;           ;
+; Total combinational functions               ; 48        ;
+; Logic element usage by number of LUT inputs ;           ;
+;     -- 4 input functions                    ; 25        ;
+;     -- 3 input functions                    ; 8         ;
+;     -- <=2 input functions                  ; 15        ;
+;                                             ;           ;
+; Logic elements by mode                      ;           ;
+;     -- normal mode                          ; 40        ;
+;     -- arithmetic mode                      ; 8         ;
+;                                             ;           ;
+; Total registers                             ; 24        ;
+;     -- Dedicated logic registers            ; 24        ;
+;     -- I/O registers                        ; 0         ;
+;                                             ;           ;
+; I/O pins                                    ; 6         ;
+;                                             ;           ;
+; Embedded Multiplier 9-bit elements          ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 24        ;
+; Total fan-out                               ; 215       ;
+; Average fan-out                             ; 2.56      ;
++---------------------------------------------+-----------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                       ;
-+----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------+-------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name  ; Entity Name ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------+-------------+--------------+
-; |SmartHome                 ; 46 (0)              ; 33 (0)                    ; 0           ; 0            ; 0       ; 0         ; 2    ; 0            ; |SmartHome           ; SmartHome   ; work         ;
-;    |main:MAIN|             ; 46 (46)             ; 33 (33)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SmartHome|main:MAIN ; main        ; work         ;
-+----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------+-------------+--------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                 ;
++----------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------+---------------+--------------+
+; Compilation Hierarchy Node       ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                    ; Entity Name   ; Library Name ;
++----------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------+---------------+--------------+
+; |SmartHome                       ; 48 (0)              ; 24 (0)                    ; 0           ; 0            ; 0       ; 0         ; 6    ; 0            ; |SmartHome                             ; SmartHome     ; work         ;
+;    |baud_rate_gen:BAUD_RATE_GEN| ; 17 (17)             ; 9 (9)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SmartHome|baud_rate_gen:BAUD_RATE_GEN ; baud_rate_gen ; work         ;
+;    |main:MAIN|                   ; 0 (0)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SmartHome|main:MAIN                   ; main          ; work         ;
+;    |reciever:RECIEVER|           ; 31 (31)             ; 14 (14)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SmartHome|reciever:RECIEVER           ; reciever      ; work         ;
++----------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------+---------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------+
+; State Machine - |SmartHome|reciever:RECIEVER|state                                      ;
++----------------------+----------------------+---------------------+---------------------+
+; Name                 ; state.RX_STATE_START ; state.RX_STATE_STOP ; state.RX_STATE_DATA ;
++----------------------+----------------------+---------------------+---------------------+
+; state.RX_STATE_START ; 0                    ; 0                   ; 0                   ;
+; state.RX_STATE_DATA  ; 1                    ; 0                   ; 1                   ;
+; state.RX_STATE_STOP  ; 1                    ; 1                   ; 0                   ;
++----------------------+----------------------+---------------------+---------------------+
 
 
 +------------------------------------------------------+
@@ -220,14 +241,57 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 33    ;
-; Number of registers using Synchronous Clear  ; 32    ;
+; Total registers                              ; 24    ;
+; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Clock Enable       ; 7     ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |SmartHome|reciever:RECIEVER|bitpos[0] ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 4 LEs                ; 12 LEs                 ; Yes        ; |SmartHome|reciever:RECIEVER|sample[0] ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |SmartHome|reciever:RECIEVER|state     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
+
+
++--------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: baud_rate_gen:BAUD_RATE_GEN ;
++----------------+-------+-------------------------------------------------+
+; Parameter Name ; Value ; Type                                            ;
++----------------+-------+-------------------------------------------------+
+; RX_ACC_MAX     ; 325   ; Signed Integer                                  ;
+; RX_ACC_WIDTH   ; 9     ; Signed Integer                                  ;
++----------------+-------+-------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: reciever:RECIEVER ;
++----------------+-------+---------------------------------------+
+; Parameter Name ; Value ; Type                                  ;
++----------------+-------+---------------------------------------+
+; RX_STATE_START ; 00    ; Unsigned Binary                       ;
+; RX_STATE_DATA  ; 01    ; Unsigned Binary                       ;
+; RX_STATE_STOP  ; 10    ; Unsigned Binary                       ;
++----------------+-------+---------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "main:MAIN"                                                                                                                                                                        ;
++--------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                                                                                                                          ;
++--------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; rxdata ; Input ; Warning  ; Input port expression (8 bits) is wider than the input port (1 bits) it drives.  The 7 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
++--------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -235,21 +299,21 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 2                           ;
-; cycloneiii_ff         ; 33                          ;
-;     SCLR              ; 32                          ;
-;     plain             ; 1                           ;
-; cycloneiii_lcell_comb ; 46                          ;
-;     arith             ; 31                          ;
-;         2 data inputs ; 31                          ;
-;     normal            ; 15                          ;
-;         1 data inputs ; 1                           ;
-;         2 data inputs ; 1                           ;
-;         3 data inputs ; 2                           ;
-;         4 data inputs ; 11                          ;
+; boundary_port         ; 6                           ;
+; cycloneiii_ff         ; 24                          ;
+;     ENA               ; 7                           ;
+;     plain             ; 17                          ;
+; cycloneiii_lcell_comb ; 48                          ;
+;     arith             ; 8                           ;
+;         2 data inputs ; 8                           ;
+;     normal            ; 40                          ;
+;         1 data inputs ; 3                           ;
+;         2 data inputs ; 4                           ;
+;         3 data inputs ; 8                           ;
+;         4 data inputs ; 25                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 6.00                        ;
-; Average LUT depth     ; 3.89                        ;
+; Max LUT depth         ; 5.00                        ;
+; Average LUT depth     ; 3.07                        ;
 +-----------------------+-----------------------------+
 
 
@@ -268,7 +332,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Sun Dec 29 17:12:00 2019
+    Info: Processing started: Sun Dec 29 20:54:01 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off SmartHome -c SmartHome
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -276,18 +340,25 @@ Info (12021): Found 1 design units, including 1 entities, in source file smartho
     Info (12023): Found entity 1: SmartHome File: E:/SmartHomeSystem/FPGA/SmartHome.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file main.v
     Info (12023): Found entity 1: main File: E:/SmartHomeSystem/FPGA/main.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file baud_rate_gen.v
+    Info (12023): Found entity 1: baud_rate_gen File: E:/SmartHomeSystem/FPGA/baud_rate_gen.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file reciever.v
+    Info (12023): Found entity 1: reciever File: E:/SmartHomeSystem/FPGA/reciever.v Line: 1
 Info (12127): Elaborating entity "SmartHome" for the top level hierarchy
-Info (12128): Elaborating entity "main" for hierarchy "main:MAIN" File: E:/SmartHomeSystem/FPGA/SmartHome.v Line: 11
+Info (12128): Elaborating entity "main" for hierarchy "main:MAIN" File: E:/SmartHomeSystem/FPGA/SmartHome.v Line: 19
+Info (12128): Elaborating entity "baud_rate_gen" for hierarchy "baud_rate_gen:BAUD_RATE_GEN" File: E:/SmartHomeSystem/FPGA/SmartHome.v Line: 24
+Info (12128): Elaborating entity "reciever" for hierarchy "reciever:RECIEVER" File: E:/SmartHomeSystem/FPGA/SmartHome.v Line: 33
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 48 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 1 input pins
-    Info (21059): Implemented 1 output pins
-    Info (21061): Implemented 46 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4767 megabytes
-    Info: Processing ended: Sun Dec 29 17:12:11 2019
+Info (21057): Implemented 56 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 3 input pins
+    Info (21059): Implemented 3 output pins
+    Info (21061): Implemented 50 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 2 warnings
+    Info: Peak virtual memory: 4766 megabytes
+    Info: Processing ended: Sun Dec 29 20:54:12 2019
     Info: Elapsed time: 00:00:11
     Info: Total CPU time (on all processors): 00:00:21
 

@@ -4,7 +4,23 @@
 			"name" : "Top",
 			"pins" : [
 				{
+					"name" : "rdy",
+					"strict" : false
+				},
+				{
 					"name" : "led1",
+					"strict" : false
+				},
+				{
+					"name" : "rxclk",
+					"strict" : false
+				},
+				{
+					"name" : "rx",
+					"strict" : false
+				},
+				{
+					"name" : "rdy_clr",
 					"strict" : false
 				},
 				{

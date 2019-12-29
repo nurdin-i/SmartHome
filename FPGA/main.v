@@ -1,22 +1,23 @@
-module main(clk,led1);
+module main(clk,led1,rxdata);
 
 input clk;
 output led1;
 reg led1;
 reg [31:0] counter;
-
+input rxdata;
+ 
 always @(posedge clk)
 begin
 
-	if(counter <= (4*50000000))
+	if(rxdata==0)
 	begin
-	counter <= counter + 1;
+		led1 = 1'b0;
 	end
 	else
 	begin
-	counter <= 0;
-	led1 <= ~led1;
+	led1 = 1'b1;
 	end
+	
 end
 
 endmodule

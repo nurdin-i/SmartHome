@@ -1,0 +1,6 @@
+
+State Machine - |SmartHome|reciever:RECIEVER|state
+Name state.RX_STATE_START state.RX_STATE_STOP state.RX_STATE_DATA 
+state.RX_STATE_START 0 0 0 
+state.RX_STATE_DATA 1 0 1 
+state.RX_STATE_STOP 1 1 0 
