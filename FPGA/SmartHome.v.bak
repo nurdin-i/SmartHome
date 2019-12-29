@@ -1,0 +1,5 @@
+module SmartHome
+(
+	input clk,
+	output wire [1:0] led1
+)
