@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HomeAutomation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<!-- Load script.js file -->
+<body>
+
+<!--Header: Optimised for Mobile use with 'hamburger' functionality-->
+  <nav>
+    <div class="logo">
+      <h4> SMART HOME</h4>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Lights</a></li>
+      <li><a href="#">Appliances</a></li>
+      <li><a href="#">Rest</a></li>
+    </ul>
+    <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+    </div>
+  </nav>
+
+  <!--Custom toggle buttons-->
+  <div>
+    <label class="lightswitch">
+      <input type="checkbox" onclick="toggleled1(this)">
+      <span class="slider round"></span>
+    </label>
+
+    <label class="lightswitch">
+        <input type="checkbox" onclick="toggleled2(this)">
+        <span class="slider round"></span>
+    </label>
+  </div>
+
+
+
+
+  <!-- On/Off buttons -->
+  <p><a href="/on"><button class="button" type='button'>ON</button></a></p>
+  <p><a href="/off"><button class="button button2"  type='button'>OFF</button></a></p>
+  <!-- Led diodes -->
+  <label class="switch"><input type="checkbox" onclick="toggleled1(this)"><span class="slider"></span></label>
+  <label class="switch"><input type="checkbox" onclick="toggleled2(this)"><span class="slider"></span></label>
+
+  <div class="switch">
+    <input type="checkbox" onclick="toggleled1(this)" name="switch" class="switch-checkbox" id="myswitch" checked>
+    <label class="switch-labels" for="myswitch">
+          <span class="switch-text"></span>
+          <span class="switch-dot"></span>
+      </label>
+  </div>
+
+  <h2>ESP Weather Station</h2>
+  <div id="chart-temperature" class="container"></div>
+
+
+
+</body>
+
+
+
+<script href="/script.js" type="text/javascript" src="script.js"></script>
+
+</html>

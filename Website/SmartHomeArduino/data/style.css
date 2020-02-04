@@ -1,0 +1,265 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+nav{
+  display: flex; /* all next to each other */
+  justify-content: space-around;
+  align-items: center;
+  min-height: 8vh;
+  font-family: 'Poppins', sans-serif;
+  background-color: rgb(100, 155, 206)
+}
+
+.logo{
+  color: rgb(226,226,226);
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 20px;
+}
+
+.nav-links{
+  display: flex;
+  justify-content: space-around;
+  width: 30%
+}
+
+.nav-links li{
+  list-style: none;
+}
+
+.nav-links a{
+  color: rgb(226,226,226);
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-weight: bold;
+  font-size: 14px;
+}
+.burger div{
+  width: 25px;
+  height: 3px;
+  background-color: rgb(226,226,226);
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+
+.burger {
+  display: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1024px){
+  .nav-links{
+    width: 50%
+  }
+}
+
+@media screen and (max-width: 768px){
+  body{
+    overflow-x: hidden;
+  }
+  .nav-links{
+    position: absolute;
+    right: 0px;
+    height: 92vh;
+    top: 8vh;
+    background-color: rgb(100, 155, 206);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in;
+    width: 35%;
+  }
+  .nav-links li{
+    opacity: 0;
+    padding: 50px;
+  }
+  .burger{
+    display: block;
+  }
+}
+
+.nav-active{
+  transform: translateX(0%);
+}
+
+@keyframes navLinkFade {
+  from{
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+.burgerChange .line1{
+  transform: rotate(-45deg) translate(-5px,6px);
+}
+
+.burgerChange .line2{
+  opacity: 0;
+}
+
+.burgerChange .line3{
+  transform: rotate(45deg) translate(-5px,-6px);
+}
+
+
+
+.lightswitch {
+  position: relative;
+  display: block;
+  width: 90px;
+  height: 55px;
+  margin-bottom: 30px;
+}
+
+.slider{
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: white;
+  transition: .5s;
+  border: 3px solid black;
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  bottom: 14px;
+  top: 8px;
+  transition: .5s;
+  background-color: black;
+}
+
+.lightswitch input {
+  display: none;
+}
+
+input:checked + .slider{
+  background-color:  rgb(100, 155, 206);
+}
+
+input:checked + .slider::before{
+  transform: translateX(47px) rotateZ(45deg);
+  background:rgb(213, 216, 15);
+}
+
+
+.slider.round {
+  border-radius: 35px;
+}
+
+.slider.round:before{
+  width: 43%;
+  height: 43%;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  transform: rotateZ(-45deg);
+}
+
+
+
+
+
+
+
+
+
+/*Style main div and remove default checkbox*/
+
+.switch {
+  position: relative;
+  width: 75px;
+  margin: 0 auto;
+}
+
+.switch-checkbox {
+  display: none;
+}
+
+
+/*Style words and oval switch */
+
+.switch-labels {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.switch-text {
+  display: block;
+  width: 200%;
+  margin-left: -100%;
+  transition: margin 0.3s ease-in 0s;
+}
+
+.switch-text:before,
+.switch-text:after {
+  float: left;
+  width: 50%;
+  line-height: 30px;
+  color: white;
+  box-sizing: border-box;
+}
+
+.switch-text:before {
+  content: "ON";
+  padding-left: 10px;
+  background-color: rgb(205, 240, 255);
+  color: #000000;
+}
+
+.switch-text:after {
+  content: "OFF";
+  padding-right: 10px;
+  background-color: rgb(21, 44, 175);
+  color: #FFFFFF;
+  text-align: right;
+}
+
+
+/*Style center dot*/
+
+.switch-dot {
+  width: 30px;
+  height: 30px;
+  background: #FFFFFF;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 41px;
+  margin-right: 5px;
+  border-radius: 20px;
+  transition: all 0.3s ease-in 0s;
+}
+
+.switch-dot:after{
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    background-image: url('http://www.free-icons-download.net/images/multiply-icon-27981.png');
+    margin: 5px 0 0 5px;
+}
+
+/*State changer*/
+
+.switch-checkbox:checked+.switch-labels .switch-text {
+  margin-left: 0;
+}
+
+.switch-checkbox:checked+.switch-labels .switch-dot {
+  right: 0px;
+  margin-right: 0px;
+}

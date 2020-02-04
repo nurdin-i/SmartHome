@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at main.v(84): always construct contains both blocking and non-blocking assignments File: E:/SmartHomeSystem/FPGA/main.v Line: 84
