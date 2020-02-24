@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Mon Feb 03 13:40:41 2020
+Analysis & Synthesis Status : Successful - Sun Feb 23 15:16:45 2020
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : SmartHome
 Top-level Entity Name : SmartHome
 Family : Cyclone IV E
-Total logic elements : 188
-    Total combinational functions : 163
-    Dedicated logic registers : 106
-Total registers : 106
-Total pins : 12
+Total logic elements : 302
+    Total combinational functions : 277
+    Dedicated logic registers : 173
+Total registers : 173
+Total pins : 21
 Total virtual pins : 0
 Total memory bits : 0
 Embedded Multiplier 9-bit elements : 0

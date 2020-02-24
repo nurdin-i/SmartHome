@@ -1,73 +1,269 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>HomeAutomation</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
   <link rel="icon" href="data:,">
   <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
   <script src="https://code.highcharts.com/highcharts.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <!-- Load script.js file -->
-<body>
 
-<!--Header: Optimised for Mobile use with 'hamburger' functionality-->
+<body>
+  <!--Header: Optimised for Mobile use with 'hamburger' functionality-->
   <nav>
     <div class="logo">
-      <h4> SMART HOME</h4>
+      <h4> SMART HOME </h4>
     </div>
     <ul class="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Lights</a></li>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/data.html">Data</a></li>
       <li><a href="#">Appliances</a></li>
       <li><a href="#">Rest</a></li>
     </ul>
     <div class="burger">
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
+      <div class="line1"></div>
+      <div class="line2"></div>
+      <div class="line3"></div>
     </div>
   </nav>
 
-  <!--Custom toggle buttons-->
-  <div>
-    <label class="lightswitch">
-      <input type="checkbox" onclick="toggleled1(this)">
-      <span class="slider round"></span>
-    </label>
 
-    <label class="lightswitch">
-        <input type="checkbox" onclick="toggleled2(this)">
-        <span class="slider round"></span>
-    </label>
+  <!--  Side navigation bar - shows Inside and Outside temperature + inside pressure and humidity, refresh every 20 seconds  -->
+  <div class="sidenav">
+    <div class="dataInfo"> 
+
+        <h3 class="sidebarH3">Set optimal temperature</h3>
+        <div class="slidecontainer">
+            <div class="value">0</div>
+            <input type="range" min="0" max="50" step="1" value="0">
+        </div>
+
+    <h3 class="sidebarH3">Temperature</h3>
+    <div class="side">
+      <img src="https://i.imgur.com/SGGbbaZ.png" alt="TemperatureLogo">
+      <h3 class="transition-text" id="temperatureID"> 00.00 </h3>
+    </div>
+
+    <h3 class="sidebarH3">Humidity</h3>
+    <div class="side">
+      <img src="https://i.imgur.com/J9Pk4Cm.png" alt="HumidityLogo">
+      <h3 class="transition-text" id="humidityID"> 00.00 </h3>
+    </div>
+
+    <h3 class="sidebarH3">Temperature Outside</h3>
+    <div class="side">
+      <img src="https://i.imgur.com/FDaVSg2.png" alt="OutsideTempLogo">
+      <h3 class="transition-text" id="temperatureOutID"> 00.00 </h3>
+    </div>
+    <h3 class="sidebarH3">Humidity Outside</h3>
+    <div class="side">
+      <img src="https://i.imgur.com/p1nkU2W.png" alt="OutsideHumidityLogo">
+      <h3 class="transition-text" id="humidityOutID"> 00.00 </h3>
+    </div>
+  </div>
   </div>
 
 
+  <!--  Uppersection contains Security System and Garage Doors buttons  -->
+  <section class="uppersection">
+    <div id="alarmDiv" class="itemupper">
+      <img src="https://i.imgur.com/Xu2wqOu.png" alt="Italian Trulli">
+      <div class="divtext">
+        <h3> Security System </h3>
+        <p id="alarmSystemText"> Deactivated </p>
+      </div>
+      <div class="switcharo">
+        <label class="lightswitch">
+          <input type="checkbox" onclick="turnAlarmSystem(this)">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+    <div id="garageDiv" class="itemupper">
+      <img src="https://i.imgur.com/GkobrHA.png" alt="Italian Trulli">
+      <div class="divtext">
+        <h3> Garage Doors </h3>
+        <p id="garageText"> Closed </p>
+      </div>
+      <div class="switcharo">
+        <label class="lightswitch">
+          <input type="checkbox" onclick="openGarageDoors(this)">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+  </section>
 
 
-  <!-- On/Off buttons -->
-  <p><a href="/on"><button class="button" type='button'>ON</button></a></p>
-  <p><a href="/off"><button class="button button2"  type='button'>OFF</button></a></p>
-  <!-- Led diodes -->
-  <label class="switch"><input type="checkbox" onclick="toggleled1(this)"><span class="slider"></span></label>
-  <label class="switch"><input type="checkbox" onclick="toggleled2(this)"><span class="slider"></span></label>
+<!--  Midsection contains inside and outside lights  -->
+  <section class="midsection">
+    <div id="leftmidwrapper" class="midwrapper">
+      
+      <div class="light1">
+      <div class="midcontent">
+        <img id="lightClick1" src="https://i.imgur.com/OrjhnYR.png">
+        <div class="divtext">
+          <h3> Kitchen </h3>
+          <p id="textClick1"> Off </p>
+        </div>
+        <div class="switcharo">
+          <label class="lightswitch">
+            <input type="checkbox" id="kitchenCheck" onclick="turnKitchenLight(this)">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+    </div>
 
-  <div class="switch">
-    <input type="checkbox" onclick="toggleled1(this)" name="switch" class="switch-checkbox" id="myswitch" checked>
-    <label class="switch-labels" for="myswitch">
-          <span class="switch-text"></span>
-          <span class="switch-dot"></span>
-      </label>
-  </div>
+      <div class="light2">
+        <div class="midcontent">
+            <img id="lightClick2" src="https://i.imgur.com/OrjhnYR.png">
+            <div class="divtext">
+              <h3> Living room </h3>
+              <p id="textClick2"> Off </p>
+            </div>
+        <div class="switcharo">
+          <label class="lightswitch">
+            <input type="checkbox" id="livingCheck" onclick="turnLivingLight(this)">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+      </div>
 
-  <h2>ESP Weather Station</h2>
-  <div id="chart-temperature" class="container"></div>
 
+      <div class="light3">
+          <div class="midcontent">
+          <img id="lightClick3" src="https://i.imgur.com/OrjhnYR.png">
+          <div class="divtext">
+            <h3> Dining room </h3>
+            <p id="textClick3"> Off </p>
+          </div>
+          <div class="switcharo">
+            <label class="lightswitch">
+              <input type="checkbox"  id="diningCheck" onclick="turnDiningLight(this)">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+        </div>
+
+        <div class="line"></div>
+
+      <div class="allLights">
+        <div class="midcontent">
+          <div class="buttonsForLights"> 
+          <button class="AllOnButton" type="button" onclick="turnALLONIn(this)">ALL ON</button>
+          <button class="AllOffButton" type="button" onclick="turnALLOFFIn(this)">ALL OFF</button>
+        </div>
+        </div>
+      </div>
+
+    </div>
+
+
+  <div id="rightmidwrapper" class="midwrapper">
+      
+      <div class="light1">
+      <div class="midcontent">
+        <img id="lightClick4"  src="https://i.imgur.com/OrjhnYR.png">
+        <div class="divtext">
+          <h3> Front door </h3>
+          <p id="textClick4"> Off </p>
+        </div>
+        <div class="switcharo">
+          <label class="lightswitch">
+            <input type="checkbox"  id="frontCheck" onclick="turnFrontLight(this)">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+      <div class="light2">
+        <div class="midcontent">
+        <img id="lightClick5" src="https://i.imgur.com/OrjhnYR.png">
+        <div class="divtext">
+          <h3> Garage </h3>
+          <p id="textClick5"> Off </p>
+        </div>
+        <div class="switcharo">
+          <label class="lightswitch">
+            <input type="checkbox"  id="garageCheck" onclick="turnGarageLight(this)">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+      </div>
+
+
+      <div class="light3">
+          <div class="midcontent">
+          <img id="lightClick6" src="https://i.imgur.com/OrjhnYR.png">
+          <div class="divtext">
+            <h3> Back room </h3>
+            <p id="textClick6"> Off </p>
+          </div>
+          <div class="switcharo">
+            <label class="lightswitch">
+              <input type="checkbox"  id="backCheck" onclick="turnBackLight(this)">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+        </div>
+
+      <div class="line"></div>
+
+      <div class="allLights">
+        <div class="midcontent">
+          <div class="buttonsForLights"> 
+          <button class="AllOnButton" type="button" onclick="turnALLONOut(this)">ALL ON</button>
+          <button class="AllOffButton" type="button" onclick="turnALLOFFOut(this)">ALL OFF</button>
+        </div>
+        </div>
+      </div>
+
+        
+    </div>
+  </section>
+
+
+  <section class="bottomsection">
+    <div class="itemupper">
+      <img id="lightClick7" src="https://i.imgur.com/RNcVo8R.png" alt="LivingRoomVent">
+      <div class="divtext">
+        <h3> Living Room - Ventilator </h3>
+        <p id="textClick7"> Off </p>
+      </div>
+      <div class="switcharo">
+        <label class="lightswitch">
+          <input type="checkbox" onclick="turnLivingVent(this)">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+    <div class="itemupper">
+      <img id="lightClick8" src="https://i.imgur.com/RNcVo8R.png" alt="DiningRoomVent">
+      <div class="divtext">
+        <h3> Dining Room - Ventilator </h3>
+        <p id="textClick8"> Off </p>
+      </div>
+      <div class="switcharo">
+        <label class="lightswitch">
+          <input type="checkbox" onclick="turnDivingVent(this)">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+  </section>
 
 
 </body>
-
-
 
 <script href="/script.js" type="text/javascript" src="script.js"></script>
 

@@ -1,5 +1,5 @@
 Flow report for SmartHome
-Mon Feb 03 13:40:50 2020
+Sun Feb 23 15:16:56 2020
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,18 +40,18 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Mon Feb 03 13:40:48 2020       ;
+; Flow Status                        ; Successful - Sun Feb 23 15:16:53 2020       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; SmartHome                                   ;
 ; Top-level Entity Name              ; SmartHome                                   ;
 ; Family                             ; Cyclone IV E                                ;
 ; Device                             ; EP4CE6E22C8                                 ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 176 / 6,272 ( 3 % )                         ;
-;     Total combinational functions  ; 163 / 6,272 ( 3 % )                         ;
-;     Dedicated logic registers      ; 106 / 6,272 ( 2 % )                         ;
-; Total registers                    ; 106                                         ;
-; Total pins                         ; 12 / 92 ( 13 % )                            ;
+; Total logic elements               ; 291 / 6,272 ( 5 % )                         ;
+;     Total combinational functions  ; 277 / 6,272 ( 4 % )                         ;
+;     Dedicated logic registers      ; 173 / 6,272 ( 3 % )                         ;
+; Total registers                    ; 173                                         ;
+; Total pins                         ; 21 / 92 ( 23 % )                            ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0 / 276,480 ( 0 % )                         ;
 ; Embedded Multiplier 9-bit elements ; 0 / 30 ( 0 % )                              ;
@@ -64,7 +64,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 02/03/2020 13:40:30 ;
+; Start date & time ; 02/23/2020 15:16:33 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; SmartHome           ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 277807420056054.158073363016292        ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 277807420056054.158246739319508        ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; NOMINAL_CORE_SUPPLY_VOLTAGE         ; 1.2V                                   ; --            ; --          ; --         ;
@@ -91,11 +91,11 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:12     ; 1.0                     ; 4769 MB             ; 00:00:21                           ;
-; Fitter               ; 00:00:04     ; 1.0                     ; 5497 MB             ; 00:00:05                           ;
+; Analysis & Synthesis ; 00:00:12     ; 1.0                     ; 4768 MB             ; 00:00:22                           ;
+; Fitter               ; 00:00:05     ; 1.0                     ; 5493 MB             ; 00:00:06                           ;
 ; Assembler            ; 00:00:01     ; 1.0                     ; 4676 MB             ; 00:00:01                           ;
-; Timing Analyzer      ; 00:00:01     ; 1.0                     ; 4756 MB             ; 00:00:01                           ;
-; Total                ; 00:00:18     ; --                      ; --                  ; 00:00:28                           ;
+; Timing Analyzer      ; 00:00:02     ; 1.0                     ; 4754 MB             ; 00:00:02                           ;
+; Total                ; 00:00:20     ; --                      ; --                  ; 00:00:31                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

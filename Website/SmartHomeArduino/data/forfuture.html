@@ -1,0 +1,117 @@
+
+  <!--Custom toggle buttons-->
+  <div>
+        <label class="lightswitch">
+          <input type="checkbox" onclick="toggleled1(this)">
+          <span class="slider round"></span>
+        </label>
+    
+        <label class="lightswitch">
+            <input type="checkbox" onclick="toggleled2(this)">
+            <span class="slider round"></span>
+        </label>
+      </div>
+    
+    
+    
+    
+      <!-- On/Off buttons -->
+      <p><a href="/on"><button class="button" type='button'>ON</button></a></p>
+      <p><a href="/off"><button class="button button2"  type='button'>OFF</button></a></p>
+      <!-- Led diodes -->
+      <label class="switch"><input type="checkbox" onclick="toggleled1(this)"><span class="slider"></span></label>
+      <label class="switch"><input type="checkbox" onclick="toggleled2(this)"><span class="slider"></span></label>
+    
+      <div class="switch">
+        <input type="checkbox" onclick="toggleled1(this)" name="switch" class="switch-checkbox" id="myswitch" checked>
+        <label class="switch-labels" for="myswitch">
+              <span class="switch-text"></span>
+              <span class="switch-dot"></span>
+          </label>
+      </div>
+
+
+
+      <div class="sidenav">
+            <div class="logopic">
+                <img src="https://i.imgur.com/YMo4Ygo.png" alt="Italian Trulli">
+              </div>
+            <h3 class="sidebarH3">Temperature</h3>
+            <div class = "side">
+                <img src="https://i.imgur.com/SGGbbaZ.png" alt="Italian Trulli">
+                <h3 class="transition-text" id="temperatureID"> 25.34 </h3>
+            </div>
+            <h3 class="sidebarH3">Pressure</h3>
+            <div class = "side">
+                <img src="pressure.png" alt="Italian Trulli">
+                <h3 class="transition-text" id="pressureID"> 25.34 </h3>
+            </div>
+            <h3>Humidity</h3>
+            <div class = "side">
+                <img src="humidity.png" alt="Italian Trulli">
+                <h3 class="transition-text" id="humidityID"> 25.34 </h3>
+            </div>
+          </div>
+      
+
+
+          
+
+//turn kitchen light on
+function turnKitchenLight(element) {
+  var xhr = new XMLHttpRequest();
+  const lightClick = document.getElementById('lightClick');
+  const textClick = document.getElementById('textClick');
+  if (element.checked) {
+    xhr.open("GET", "/ledroom2?led2=" + 22, true);
+    changeText(lightClick,textClick, 1);
+  } else if (!element.checked) {
+    xhr.open("GET", "/ledroom2?led2=" + 23, true);
+    changeText(lightClick,textClick, 0);
+  }
+  xhr.send();
+}
+
+
+
+
+//turnDiode
+function toggleled1(element) {
+  var xhr = new XMLHttpRequest();
+  const upperSection = document.getElementById('alarmDiv')
+  if (element.checked) {
+    xhr.open("GET", "/ledroom1?led1=" + 20, true);
+    upperSection.classList.add('active');
+  } else if (!element.checked) {
+    xhr.open("GET", "/ledroom1?led1=" + 21, true);
+    upperSection.classList.remove('active');
+  }
+  xhr.send();
+}
+
+//turnDiode2
+function toggleled2(element) {
+  var xhr = new XMLHttpRequest();
+  if (element.checked) {
+    xhr.open("GET", "/ledroom2?led2=" + 22, true);
+  } else if (!element.checked) {
+    xhr.open("GET", "/ledroom2?led2=" + 23, true);
+  }
+  xhr.send();
+}
+
+
+//turn kitchen light on
+function turnKitchenLight(element) {
+  var xhr = new XMLHttpRequest();
+  const lightClick = document.getElementById('lightClick');
+  const textClick = document.getElementById('textClick');
+  if (element.checked) {
+    xhr.open("GET", "/ledroom2?led2=" + 22, true);
+    changeText(lightClick,textClick, 1);
+  } else if (!element.checked) {
+    xhr.open("GET", "/ledroom2?led2=" + 23, true);
+    changeText(lightClick,textClick, 0);
+  }
+  xhr.send();
+}

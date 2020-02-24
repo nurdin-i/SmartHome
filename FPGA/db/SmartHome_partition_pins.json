@@ -8,19 +8,43 @@
 					"strict" : false
 				},
 				{
-					"name" : "led1",
+					"name" : "kitchenlight",
 					"strict" : false
 				},
 				{
-					"name" : "led2",
+					"name" : "livinglight",
 					"strict" : false
 				},
 				{
-					"name" : "led3",
+					"name" : "dininglight",
 					"strict" : false
 				},
 				{
-					"name" : "led4",
+					"name" : "frontlight",
+					"strict" : false
+				},
+				{
+					"name" : "garagelight",
+					"strict" : false
+				},
+				{
+					"name" : "beepBuzzer",
+					"strict" : false
+				},
+				{
+					"name" : "servoGarageDoor",
+					"strict" : false
+				},
+				{
+					"name" : "vent1A",
+					"strict" : false
+				},
+				{
+					"name" : "vent2A",
+					"strict" : false
+				},
+				{
+					"name" : "backlight",
 					"strict" : false
 				},
 				{
@@ -41,6 +65,14 @@
 				},
 				{
 					"name" : "clk",
+					"strict" : false
+				},
+				{
+					"name" : "sensorOutside1",
+					"strict" : false
+				},
+				{
+					"name" : "sensorOutside2",
 					"strict" : false
 				}
 			]

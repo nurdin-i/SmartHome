@@ -4,9 +4,6 @@
 *********/
 
 #include <DHT.h>
-
-
-
 #include "WiFi.h" //Wifi library to connect to your WIFI network
 #include "ESPAsyncWebServer.h" // Library for creation of server on your local network
 #include "SPIFFS.h" // Library that allows uploading data (index.html, javascript, css) to your ESP32)
@@ -16,34 +13,72 @@ HardwareSerial SerialESP(2); //Create an object on UART 2 (ESP32 has few UA
 
 #define RXD2 16 // RX pin 
 #define TXD2 17 // TX pin
+#define InsideDHTPin 5
+#define OutsideDHTPin 18
 
-#define vanjskiDHT 5
 
-#define gas 34
-
-DHT vT(vanjskiDHT, DHT22);
+DHT OutDHT(OutsideDHTPin, DHT11);
+DHT InDHT(InsideDHTPin, DHT22); //Create a DHT22 object
 
 // Network credentials
 const char* ssid = "8cbea0";
 const char* password = "232125668";
 
-
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
 
 
+// function to read temperature from inside DHT sensor
 String readDHTTemp() {
   // Read temperature as Celsius (the default)
-  float t = vT.readTemperature();
-  if (isnan(t)) {
+  float temperature = InDHT.readTemperature();
+  if (isnan(temperature)) {
     Serial.println("Failed to read from BME280 sensor!");
     return "";
   }
   else {
-    Serial.println(t);
-    return String(t);
+    return String(temperature);
   }
 }
+
+String readDHTHumidity() {
+  // Read temperature as Celsius (the default)
+  float humidity = InDHT.readHumidity();
+  if (isnan(humidity)) {
+    Serial.println("Failed to read from BME280 sensor!");
+    return "";
+  }
+  else {
+    return String(humidity);
+  }
+}
+
+
+String readDHTOutTemperature() {
+  // Read temperature as Celsius (the default)
+  float temperature = OutDHT.readTemperature();
+  if (isnan(temperature)) {
+    Serial.println("Failed to read from BME280 sensor!");
+    return "";
+  }
+  else {
+    return String(temperature);
+  }
+}
+
+
+String readDHTOutHumidity() {
+  // Read temperature as Celsius (the default)
+  float humidity = OutDHT.readHumidity();
+  if (isnan(humidity)) {
+    Serial.println("Failed to read from BME280 sensor!");
+    return "";
+  }
+  else {
+    return String(humidity);
+  }
+}
+
 
 void setup() {
 
@@ -77,8 +112,13 @@ void setup() {
   Serial.println(WiFi.localIP());
 
   // Route for root / web page
-  server.on("/", HTTP_GET, [](AsyncWebServerRequest * request) {
+  server.on("/index.html", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->send(SPIFFS, "/index.html");
+  });
+
+  // Route for data.html file
+  server.on("/data.html", HTTP_GET, [](AsyncWebServerRequest * request) {
+    request->send(SPIFFS, "/data.html");
   });
 
   // Route to load style.css file
@@ -91,7 +131,115 @@ void setup() {
     request->send(SPIFFS, "/script.js", "text/javascript");
   });
 
-  //delete from this
+
+  // response to HTTP request made from javascript file
+  // if GET request with /temperature was sent, send back the value of temperature in plain text
+  // 200 is successfull code.
+
+  server.on("/temperature", HTTP_GET, [](AsyncWebServerRequest * request) {
+    request->send_P(200, "text/plain", readDHTTemp().c_str());
+  });
+
+  server.on("/humidity", HTTP_GET, [](AsyncWebServerRequest * request) {
+    request->send_P(200, "text/plain", readDHTHumidity().c_str());
+  });
+
+  server.on("/temperatureOUT", HTTP_GET, [](AsyncWebServerRequest * request) {
+    request->send_P(200, "text/plain", readDHTOutTemperature().c_str());
+  });
+
+  server.on("/humidityOUT", HTTP_GET, [](AsyncWebServerRequest * request) {
+    request->send_P(200, "text/plain", readDHTOutHumidity().c_str());
+  });
+
+
+
+  server.on("/alarmsystem", HTTP_GET, [](AsyncWebServerRequest * request) {
+    //if GET request that is linked to /ledroom1 has a parameter named led1, then read the value of that parameter
+    if (request->hasParam("alarm")) {
+      int byteVal = (request->getParam("alarm")->value().toInt());  //value() returns STRING which we convert to INT
+      char charVal = byteVal; //INT is converted to char because on recieving END we decode characters of 8 bit
+      Serial.print("saljem alarm");
+      SerialESP.print(charVal); // send character to FPGA
+    }
+    request->send(SPIFFS, "/index.html");
+  });
+
+  server.on("/garagedoors", HTTP_GET, [](AsyncWebServerRequest * request) {
+    //if GET request that is linked to /ledroom1 has a parameter named led1, then read the value of that parameter
+    if (request->hasParam("garageopen")) {
+      int byteVal = (request->getParam("garageopen")->value().toInt());  //value() returns STRING which we convert to INT
+      char charVal = byteVal; //INT is converted to char because on recieving END we decode characters of 8 bit
+      SerialESP.print(charVal); // send character to FPGA
+    }
+    request->send(SPIFFS, "/index.html");
+  });
+
+  server.on("/kitchenlight", HTTP_GET, [](AsyncWebServerRequest * request) {
+    //if GET request that is linked to /ledroom1 has a parameter named led1, then read the value of that parameter
+    if (request->hasParam("kitchen")) {
+      int byteVal = (request->getParam("kitchen")->value().toInt());  //value() returns STRING which we convert to INT
+      char charVal = byteVal; //INT is converted to char because on recieving END we decode characters of 8 bit
+      SerialESP.print(charVal); // send character to FPGA
+    }
+    request->send(SPIFFS, "/index.html");
+  });
+
+
+    server.on("/livinglight", HTTP_GET, [](AsyncWebServerRequest * request) {
+    //if GET request that is linked to /ledroom1 has a parameter named led1, then read the value of that parameter
+    if (request->hasParam("living")) {
+      int byteVal = (request->getParam("living")->value().toInt());  //value() returns STRING which we convert to INT
+      char charVal = byteVal; //INT is converted to char because on recieving END we decode characters of 8 bit
+      SerialESP.print(charVal); // send character to FPGA
+    }
+    request->send(SPIFFS, "/index.html");
+  });
+
+
+    server.on("/dininglight", HTTP_GET, [](AsyncWebServerRequest * request) {
+    //if GET request that is linked to /ledroom1 has a parameter named led1, then read the value of that parameter
+    if (request->hasParam("dining")) {
+      int byteVal = (request->getParam("dining")->value().toInt());  //value() returns STRING which we convert to INT
+      char charVal = byteVal; //INT is converted to char because on recieving END we decode characters of 8 bit
+      SerialESP.print(charVal); // send character to FPGA
+    }
+    request->send(SPIFFS, "/index.html");
+  });
+
+
+    server.on("/frontlight", HTTP_GET, [](AsyncWebServerRequest * request) {
+    //if GET request that is linked to /ledroom1 has a parameter named led1, then read the value of that parameter
+    if (request->hasParam("front")) {
+      int byteVal = (request->getParam("front")->value().toInt());  //value() returns STRING which we convert to INT
+      char charVal = byteVal; //INT is converted to char because on recieving END we decode characters of 8 bit
+      SerialESP.print(charVal); // send character to FPGA
+    }
+    request->send(SPIFFS, "/index.html");
+  });
+
+
+    server.on("/garagelight", HTTP_GET, [](AsyncWebServerRequest * request) {
+    //if GET request that is linked to /ledroom1 has a parameter named led1, then read the value of that parameter
+    if (request->hasParam("garage")) {
+      int byteVal = (request->getParam("garage")->value().toInt());  //value() returns STRING which we convert to INT
+      char charVal = byteVal; //INT is converted to char because on recieving END we decode characters of 8 bit
+      SerialESP.print(charVal); // send character to FPGA
+    }
+    request->send(SPIFFS, "/index.html");
+  });
+
+
+    server.on("/backlight", HTTP_GET, [](AsyncWebServerRequest * request) {
+    //if GET request that is linked to /ledroom1 has a parameter named led1, then read the value of that parameter
+    if (request->hasParam("back")) {
+      int byteVal = (request->getParam("back")->value().toInt());  //value() returns STRING which we convert to INT
+      char charVal = byteVal; //INT is converted to char because on recieving END we decode characters of 8 bit
+      SerialESP.print(charVal); // send character to FPGA
+    }
+    request->send(SPIFFS, "/index.html");
+  });
+
 
   // Route to set GPIO to HIGH
   server.on("/on", HTTP_GET, [](AsyncWebServerRequest * request) {
@@ -131,13 +279,11 @@ void setup() {
   });
 
 
-  server.on("/temperature", HTTP_GET, [](AsyncWebServerRequest * request) {
-    request->send_P(200, "text/plain", readDHTTemp().c_str());
-  });
-
   // Start server
   server.begin();
-  vT.begin();
+  // Start DHT inside and outside sensor
+  InDHT.begin();
+  OutDHT.begin();
 }
 
 void loop() {
@@ -146,7 +292,6 @@ void loop() {
     Serial.println(SerialESP.read());
     delay(5);
   }
-  Serial.println(analogRead(gas));
 
   delay(500);
 }
