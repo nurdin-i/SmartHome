@@ -295,6 +295,40 @@ input:checked+.slider::before {
   padding-left: 11%
 }
 
+/* The sidebar menu */
+#monitoring .sidenav {
+  height: 100%;
+  /* Full-height: remove this if you want "auto" height */
+  width: 100%;
+  /* Set the width of the sidebar */
+  /* Fixed Sidebar (stay in place on scroll) */
+  background-color: #393f4d;
+  /* Black */
+  /* Disable horizontal scroll */
+  padding-top: 5px;
+  color: rgb(226, 226, 226);
+  font-family: 'Titillium Web', sans-serif;
+  display: block;
+  text-align: center;
+}
+
+#monitoring img {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left: 800px;
+}
+
+#monitoring .side {
+
+}
+
+#monitoring .side h3 {
+  position: center;
+
+  margin-right: 800px;
+}
+
 
 /* The sidebar menu */
 .sidenav {
@@ -513,6 +547,47 @@ input[type="range"]::-webkit-slider-thumb {
   body {
     overflow-x: hidden;
   }
+
+
+#monitoring body {
+  height: 100% !important;
+  overflow-y: scroll !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+  /* The sidebar menu */
+#monitoring .sidenav {
+  all: initial;
+
+  /* Full-height: remove this if you want "auto" height */
+  /* Set the width of the sidebar */
+  /* Fixed Sidebar (stay in place on scroll) */
+  background-color: #393f4d;
+  color: rgb(226, 226, 226);
+  font-family: 'Titillium Web', sans-serif;
+  display: inline-block;
+  width: 100% !important;
+  height: 100% !important;
+  align-items: center;
+  text-align: center;
+}
+
+#monitoring img {
+  all: initial;
+
+}
+
+#monitoring .side {
+  all: initial;
+}
+
+#monitoring .side h3 {
+  all: initial;
+  font-family: 'Titillium Web', sans-serif;
+  color: #ffffff;
+  text-align: center;
+  font-size: 50px;
+}
 
 
   .nav-links {

@@ -21,7 +21,7 @@
     <ul class="nav-links">
       <li><a href="/index.html">Home</a></li>
       <li><a href="/data.html">Data</a></li>
-      <li><a href="#">Appliances</a></li>
+      <li><a href="/monitoring.html">Monitoring</a></li>
       <li><a href="#">Rest</a></li>
     </ul>
     <div class="burger">
@@ -39,7 +39,7 @@
         <h3 class="sidebarH3">Set optimal temperature</h3>
         <div class="slidecontainer">
             <div class="value">0</div>
-            <input type="range" min="0" max="50" step="1" value="0">
+            <input type="range" id="range" oninput="changeTemperature()" min="0" max="50" step="1" value="25">
         </div>
 
     <h3 class="sidebarH3">Temperature</h3>

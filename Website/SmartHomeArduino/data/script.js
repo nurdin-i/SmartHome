@@ -11,7 +11,7 @@ const navSlide = () => {
       if (link.style.animation) {
         link.style.animation = '';
       } else {
-        link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.4}s`;
+        link.style.animation = `navLinkFade ease forwards ${index / 2 + 0.8}s`;
       }
     });
     //burger animation
@@ -77,6 +77,13 @@ function turnAlarmSystem(element){
   xhr.send();
 }
 */
+
+function changeTemperature(){
+  var xhr = new XMLHttpRequest();
+  const rangeValue = document.getElementById('range');
+  xhr.open("GET", "/changeTemperature?temperatureValue=" + rangeValue.value, true);
+  xhr.send();
+}
 
 //turn kitchen light on
 function turnAlarmSystem(element) {

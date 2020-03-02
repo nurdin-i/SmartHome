@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Monitoring</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+    <link rel="icon" href="data:,">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body id="monitoring">
+      <!--Header: Optimised for Mobile use with 'hamburger' functionality-->
+  <nav>
+    <div class="logo">
+      <h4> SMART HOME </h4>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/data.html">Data</a></li>
+      <li><a href="/monitoring.html">Monitoring</a></li>
+      <li><a href="#">Rest</a></li>
+    </ul>
+    <div class="burger">
+      <div class="line1"></div>
+      <div class="line2"></div>
+      <div class="line3"></div>
+    </div>
+  </nav>
+
+   <!--  Side navigation bar - shows Inside and Outside temperature + inside pressure and humidity, refresh every 20 seconds  -->
+   <div class="sidenav">
+    <div class="dataInfo"> 
+
+        <h3 class="sidebarH3">Set optimal temperature</h3>
+        <div class="slidecontainer">
+            <div class="value">0</div>
+            <input type="range" id="range" oninput="changeTemperature()" min="0" max="50" step="1" value="0">
+        </div>
+
+    <h3 class="sidebarH3">Temperature</h3>
+    <div class="side">
+      <img src="https://i.imgur.com/SGGbbaZ.png" alt="TemperatureLogo">
+      <h3 class="transition-text" id="temperatureID"> 00.00 </h3>
+    </div>
+
+    <h3 class="sidebarH3">Humidity</h3>
+    <div class="side">
+      <img src="https://i.imgur.com/J9Pk4Cm.png" alt="HumidityLogo">
+      <h3 class="transition-text" id="humidityID"> 00.00 </h3>
+    </div>
+
+    <h3 class="sidebarH3">Temperature Outside</h3>
+    <div class="side">
+      <img src="https://i.imgur.com/FDaVSg2.png" alt="OutsideTempLogo">
+      <h3 class="transition-text" id="temperatureOutID"> 00.00 </h3>
+    </div>
+    <h3 class="sidebarH3">Humidity Outside</h3>
+    <div class="side">
+      <img src="https://i.imgur.com/p1nkU2W.png" alt="OutsideHumidityLogo">
+      <h3 class="transition-text" id="humidityOutID"> 00.00 </h3>
+    </div>
+  </div>
+  </div>
+
+
+</body>
+
+<script href="/script.js" type="text/javascript" src="script.js"></script>
+</html>
