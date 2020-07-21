@@ -24,8 +24,8 @@
     <ul class="nav-links">
       <li><a href="/index.html">Home</a></li>
       <li><a href="/data.html">Data</a></li>
-      <li><a href="/monitoring.html">Monitoring</a></li>
-      <li><a href="#">Rest</a></li>
+      <li><a href="/monitoring.html">Mobile</a></li>
+      <li><a href="https://smarthomedata.000webhostapp.com/esp-data.php">Monitoring</a></li>
     </ul>
     <div class="burger">
       <div class="line1"></div>
@@ -45,7 +45,7 @@
 <script>
 
 var chartT = new Highcharts.Chart({
-  chart:{ renderTo : 'chart-temperature-inside' },
+  chart:{ renderTo : 'chart-temperature-inside'},
   title: { text: 'Temperature' },
   series: [{
     showInLegend: false,
@@ -63,7 +63,7 @@ var chartT = new Highcharts.Chart({
   yAxis: {
     title: { text: 'Temperature (Celsius)' }
   },
-  credits: { enabled: false }
+  credits: { enabled: false },
 });
 
 setInterval(function ( ) {

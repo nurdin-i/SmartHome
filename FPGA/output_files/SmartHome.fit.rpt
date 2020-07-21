@@ -1,5 +1,5 @@
 Fitter report for SmartHome
-Sat Feb 29 15:51:40 2020
+Tue Jun 23 23:40:51 2020
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -38,10 +38,8 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
  30. I/O Rules Matrix
  31. Fitter Device Options
  32. Operating Settings and Conditions
- 33. Estimated Delay Added for Hold Timing Summary
- 34. Estimated Delay Added for Hold Timing Details
- 35. Fitter Messages
- 36. Fitter Suppressed Messages
+ 33. Fitter Messages
+ 34. Fitter Suppressed Messages
 
 
 
@@ -67,18 +65,18 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Fitter Summary                                                                   ;
 +------------------------------------+---------------------------------------------+
-; Fitter Status                      ; Successful - Sat Feb 29 15:51:40 2020       ;
+; Fitter Status                      ; Successful - Tue Jun 23 23:40:51 2020       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; SmartHome                                   ;
 ; Top-level Entity Name              ; SmartHome                                   ;
 ; Family                             ; Cyclone IV E                                ;
 ; Device                             ; EP4CE6E22C8                                 ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 291 / 6,272 ( 5 % )                         ;
-;     Total combinational functions  ; 277 / 6,272 ( 4 % )                         ;
+; Total logic elements               ; 301 / 6,272 ( 5 % )                         ;
+;     Total combinational functions  ; 285 / 6,272 ( 5 % )                         ;
 ;     Dedicated logic registers      ; 173 / 6,272 ( 3 % )                         ;
 ; Total registers                    ; 173                                         ;
-; Total pins                         ; 21 / 92 ( 23 % )                            ;
+; Total pins                         ; 22 / 92 ( 24 % )                            ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0 / 276,480 ( 0 % )                         ;
 ; Embedded Multiplier 9-bit elements ; 0 / 30 ( 0 % )                              ;
@@ -154,13 +152,13 @@ refer to the applicable agreement for further details.
 ; Number detected on machine ; 4           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 1.02        ;
+; Average used               ; 1.03        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.7%      ;
-;     Processors 3-4         ;   0.6%      ;
+;     Processor 2            ;   1.1%      ;
+;     Processors 3-4         ;   1.0%      ;
 +----------------------------+-------------+
 
 
@@ -170,8 +168,8 @@ refer to the applicable agreement for further details.
 ; Type                ; Total [A + B]      ; From Design Partitions [A] ; From Rapid Recompile [B] ;
 +---------------------+--------------------+----------------------------+--------------------------+
 ; Placement (by node) ;                    ;                            ;                          ;
-;     -- Requested    ; 0.00 % ( 0 / 504 ) ; 0.00 % ( 0 / 504 )         ; 0.00 % ( 0 / 504 )       ;
-;     -- Achieved     ; 0.00 % ( 0 / 504 ) ; 0.00 % ( 0 / 504 )         ; 0.00 % ( 0 / 504 )       ;
+;     -- Requested    ; 0.00 % ( 0 / 514 ) ; 0.00 % ( 0 / 514 )         ; 0.00 % ( 0 / 514 )       ;
+;     -- Achieved     ; 0.00 % ( 0 / 514 ) ; 0.00 % ( 0 / 514 )         ; 0.00 % ( 0 / 514 )       ;
 ;                     ;                    ;                            ;                          ;
 ; Routing (by net)    ;                    ;                            ;                          ;
 ;     -- Requested    ; 0.00 % ( 0 / 0 )   ; 0.00 % ( 0 / 0 )           ; 0.00 % ( 0 / 0 )         ;
@@ -194,7 +192,7 @@ refer to the applicable agreement for further details.
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 ; Partition Name                 ; Preservation Achieved ; Preservation Level Used ; Netlist Type Used ; Preservation Method ; Notes ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
-; Top                            ; 0.00 % ( 0 / 494 )    ; N/A                     ; Source File       ; N/A                 ;       ;
+; Top                            ; 0.00 % ( 0 / 504 )    ; N/A                     ; Source File       ; N/A                 ;       ;
 ; hard_block:auto_generated_inst ; 0.00 % ( 0 / 10 )     ; N/A                     ; Source File       ; N/A                 ;       ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 
@@ -210,28 +208,28 @@ The pin-out file can be found in E:/SmartHomeSystem/FPGA/output_files/SmartHome.
 +---------------------------------------------+---------------------+
 ; Resource                                    ; Usage               ;
 +---------------------------------------------+---------------------+
-; Total logic elements                        ; 291 / 6,272 ( 5 % ) ;
-;     -- Combinational with no register       ; 118                 ;
-;     -- Register only                        ; 14                  ;
-;     -- Combinational with a register        ; 159                 ;
+; Total logic elements                        ; 301 / 6,272 ( 5 % ) ;
+;     -- Combinational with no register       ; 128                 ;
+;     -- Register only                        ; 16                  ;
+;     -- Combinational with a register        ; 157                 ;
 ;                                             ;                     ;
 ; Logic element usage by number of LUT inputs ;                     ;
-;     -- 4 input functions                    ; 127                 ;
-;     -- 3 input functions                    ; 22                  ;
-;     -- <=2 input functions                  ; 128                 ;
-;     -- Register only                        ; 14                  ;
+;     -- 4 input functions                    ; 128                 ;
+;     -- 3 input functions                    ; 27                  ;
+;     -- <=2 input functions                  ; 130                 ;
+;     -- Register only                        ; 16                  ;
 ;                                             ;                     ;
 ; Logic elements by mode                      ;                     ;
-;     -- normal mode                          ; 175                 ;
+;     -- normal mode                          ; 183                 ;
 ;     -- arithmetic mode                      ; 102                 ;
 ;                                             ;                     ;
 ; Total registers*                            ; 173 / 6,684 ( 3 % ) ;
 ;     -- Dedicated logic registers            ; 173 / 6,272 ( 3 % ) ;
 ;     -- I/O registers                        ; 0 / 412 ( 0 % )     ;
 ;                                             ;                     ;
-; Total LABs:  partially or completely used   ; 23 / 392 ( 6 % )    ;
+; Total LABs:  partially or completely used   ; 28 / 392 ( 7 % )    ;
 ; Virtual pins                                ; 0                   ;
-; I/O pins                                    ; 21 / 92 ( 23 % )    ;
+; I/O pins                                    ; 22 / 92 ( 24 % )    ;
 ;     -- Clock pins                           ; 1 / 3 ( 33 % )      ;
 ;     -- Dedicated input pins                 ; 0 / 9 ( 0 % )       ;
 ;                                             ;                     ;
@@ -247,12 +245,12 @@ The pin-out file can be found in E:/SmartHomeSystem/FPGA/output_files/SmartHome.
 ; ASMI blocks                                 ; 0 / 1 ( 0 % )       ;
 ; Oscillator blocks                           ; 0 / 1 ( 0 % )       ;
 ; Impedance control blocks                    ; 0 / 4 ( 0 % )       ;
-; Average interconnect usage (total/H/V)      ; 0.3% / 0.4% / 0.2%  ;
-; Peak interconnect usage (total/H/V)         ; 1.3% / 1.5% / 1.1%  ;
+; Average interconnect usage (total/H/V)      ; 0.3% / 0.3% / 0.4%  ;
+; Peak interconnect usage (total/H/V)         ; 1.2% / 1.0% / 1.5%  ;
 ; Maximum fan-out                             ; 173                 ;
-; Highest non-global fan-out                  ; 35                  ;
-; Total fan-out                               ; 1370                ;
-; Average fan-out                             ; 2.65                ;
+; Highest non-global fan-out                  ; 34                  ;
+; Total fan-out                               ; 1397                ;
+; Average fan-out                             ; 2.64                ;
 +---------------------------------------------+---------------------+
 *  Register count does not include registers inside RAM blocks or DSP blocks.
 
@@ -265,29 +263,29 @@ The pin-out file can be found in E:/SmartHomeSystem/FPGA/output_files/SmartHome.
 +---------------------------------------------+--------------------+--------------------------------+
 ; Difficulty Clustering Region                ; Low                ; Low                            ;
 ;                                             ;                    ;                                ;
-; Total logic elements                        ; 291 / 6272 ( 5 % ) ; 0 / 6272 ( 0 % )               ;
-;     -- Combinational with no register       ; 118                ; 0                              ;
-;     -- Register only                        ; 14                 ; 0                              ;
-;     -- Combinational with a register        ; 159                ; 0                              ;
+; Total logic elements                        ; 301 / 6272 ( 5 % ) ; 0 / 6272 ( 0 % )               ;
+;     -- Combinational with no register       ; 128                ; 0                              ;
+;     -- Register only                        ; 16                 ; 0                              ;
+;     -- Combinational with a register        ; 157                ; 0                              ;
 ;                                             ;                    ;                                ;
 ; Logic element usage by number of LUT inputs ;                    ;                                ;
-;     -- 4 input functions                    ; 127                ; 0                              ;
-;     -- 3 input functions                    ; 22                 ; 0                              ;
-;     -- <=2 input functions                  ; 128                ; 0                              ;
-;     -- Register only                        ; 14                 ; 0                              ;
+;     -- 4 input functions                    ; 128                ; 0                              ;
+;     -- 3 input functions                    ; 27                 ; 0                              ;
+;     -- <=2 input functions                  ; 130                ; 0                              ;
+;     -- Register only                        ; 16                 ; 0                              ;
 ;                                             ;                    ;                                ;
 ; Logic elements by mode                      ;                    ;                                ;
-;     -- normal mode                          ; 175                ; 0                              ;
+;     -- normal mode                          ; 183                ; 0                              ;
 ;     -- arithmetic mode                      ; 102                ; 0                              ;
 ;                                             ;                    ;                                ;
 ; Total registers                             ; 173                ; 0                              ;
 ;     -- Dedicated logic registers            ; 173 / 6272 ( 3 % ) ; 0 / 6272 ( 0 % )               ;
 ;     -- I/O registers                        ; 0                  ; 0                              ;
 ;                                             ;                    ;                                ;
-; Total LABs:  partially or completely used   ; 23 / 392 ( 6 % )   ; 0 / 392 ( 0 % )                ;
+; Total LABs:  partially or completely used   ; 28 / 392 ( 7 % )   ; 0 / 392 ( 0 % )                ;
 ;                                             ;                    ;                                ;
 ; Virtual pins                                ; 0                  ; 0                              ;
-; I/O pins                                    ; 21                 ; 0                              ;
+; I/O pins                                    ; 22                 ; 0                              ;
 ; Embedded Multiplier 9-bit elements          ; 0 / 30 ( 0 % )     ; 0 / 30 ( 0 % )                 ;
 ; Total memory bits                           ; 0                  ; 0                              ;
 ; Total RAM block bits                        ; 0                  ; 0                              ;
@@ -300,8 +298,8 @@ The pin-out file can be found in E:/SmartHomeSystem/FPGA/output_files/SmartHome.
 ;     -- Registered Output Connections        ; 0                  ; 0                              ;
 ;                                             ;                    ;                                ;
 ; Internal Connections                        ;                    ;                                ;
-;     -- Total Connections                    ; 1365               ; 5                              ;
-;     -- Registered Connections               ; 503                ; 0                              ;
+;     -- Total Connections                    ; 1392               ; 5                              ;
+;     -- Registered Connections               ; 522                ; 0                              ;
 ;                                             ;                    ;                                ;
 ; External Connections                        ;                    ;                                ;
 ;     -- Top                                  ; 0                  ; 0                              ;
@@ -309,7 +307,7 @@ The pin-out file can be found in E:/SmartHomeSystem/FPGA/output_files/SmartHome.
 ;                                             ;                    ;                                ;
 ; Partition Interface                         ;                    ;                                ;
 ;     -- Input Ports                          ; 5                  ; 0                              ;
-;     -- Output Ports                         ; 16                 ; 0                              ;
+;     -- Output Ports                         ; 17                 ; 0                              ;
 ;     -- Bidir Ports                          ; 0                  ; 0                              ;
 ;                                             ;                    ;                                ;
 ; Registered Ports                            ;                    ;                                ;
@@ -351,11 +349,12 @@ The pin-out file can be found in E:/SmartHomeSystem/FPGA/output_files/SmartHome.
 ; dininglight     ; 127   ; 7        ; 16           ; 24           ; 7            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 ; frontlight      ; 126   ; 7        ; 16           ; 24           ; 0            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 ; garagelight     ; 125   ; 7        ; 18           ; 24           ; 21           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; heater          ; 44    ; 3        ; 5            ; 0            ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 ; kitchenlight    ; 129   ; 8        ; 16           ; 24           ; 21           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 ; livinglight     ; 128   ; 8        ; 16           ; 24           ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 ; rdy             ; 132   ; 8        ; 13           ; 24           ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; Fitter               ; -                    ; -                   ;
-; recieveLine     ; 44    ; 3        ; 5            ; 0            ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; Fitter               ; -                    ; -                   ;
-; rxclk           ; 119   ; 7        ; 23           ; 24           ; 0            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; Fitter               ; -                    ; -                   ;
+; recieveLine     ; 142   ; 8        ; 3            ; 24           ; 21           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; Fitter               ; -                    ; -                   ;
+; rxclk           ; 135   ; 8        ; 11           ; 24           ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; Fitter               ; -                    ; -                   ;
 ; servoGarageDoor ; 106   ; 6        ; 34           ; 20           ; 7            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 ; transmitLine    ; 114   ; 7        ; 28           ; 24           ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 ; vent1A          ; 10    ; 1        ; 0            ; 18           ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
@@ -399,8 +398,8 @@ The pin-out file can be found in E:/SmartHomeSystem/FPGA/output_files/SmartHome.
 ; 4        ; 0 / 14 ( 0 % )  ; 2.5V          ; --           ;
 ; 5        ; 0 / 13 ( 0 % )  ; 2.5V          ; --           ;
 ; 6        ; 2 / 10 ( 20 % ) ; 2.5V          ; --           ;
-; 7        ; 8 / 13 ( 62 % ) ; 2.5V          ; --           ;
-; 8        ; 4 / 12 ( 33 % ) ; 2.5V          ; --           ;
+; 7        ; 7 / 13 ( 54 % ) ; 2.5V          ; --           ;
+; 8        ; 6 / 12 ( 50 % ) ; 2.5V          ; --           ;
 +----------+-----------------+---------------+--------------+
 
 
@@ -452,7 +451,7 @@ The pin-out file can be found in E:/SmartHomeSystem/FPGA/output_files/SmartHome.
 ; 41       ;            ;          ; GND                                                       ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; 42       ; 52         ; 3        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
 ; 43       ; 53         ; 3        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
-; 44       ; 54         ; 3        ; recieveLine                                               ; output ; 2.5 V        ;         ; Column I/O ; N               ; no       ; Off          ;
+; 44       ; 54         ; 3        ; heater                                                    ; output ; 2.5 V        ;         ; Column I/O ; Y               ; no       ; Off          ;
 ; 45       ;            ;          ; VCCINT                                                    ; power  ;              ; 1.2V    ; --         ;                 ; --       ; --           ;
 ; 46       ; 58         ; 3        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; --       ; --           ;
 ; 47       ;            ; 3        ; VCCIO3                                                    ; power  ;              ; 2.5V    ; --         ;                 ; --       ; --           ;
@@ -528,7 +527,7 @@ The pin-out file can be found in E:/SmartHomeSystem/FPGA/output_files/SmartHome.
 ; 116      ;            ;          ; VCCINT                                                    ; power  ;              ; 1.2V    ; --         ;                 ; --       ; --           ;
 ; 117      ;            ; 7        ; VCCIO7                                                    ; power  ;              ; 2.5V    ; --         ;                 ; --       ; --           ;
 ; 118      ;            ;          ; GND                                                       ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
-; 119      ; 163        ; 7        ; rxclk                                                     ; output ; 2.5 V        ;         ; Column I/O ; N               ; no       ; Off          ;
+; 119      ; 163        ; 7        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; --       ; --           ;
 ; 120      ; 164        ; 7        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
 ; 121      ; 165        ; 7        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
 ; 122      ;            ; 7        ; VCCIO7                                                    ; power  ;              ; 2.5V    ; --         ;                 ; --       ; --           ;
@@ -544,14 +543,14 @@ The pin-out file can be found in E:/SmartHomeSystem/FPGA/output_files/SmartHome.
 ; 132      ; 181        ; 8        ; rdy                                                       ; output ; 2.5 V        ;         ; Column I/O ; N               ; no       ; Off          ;
 ; 133      ; 182        ; 8        ; rdy_clr                                                   ; input  ; 2.5 V        ;         ; Column I/O ; N               ; no       ; Off          ;
 ; 134      ;            ;          ; VCCINT                                                    ; power  ;              ; 1.2V    ; --         ;                 ; --       ; --           ;
-; 135      ; 185        ; 8        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
+; 135      ; 185        ; 8        ; rxclk                                                     ; output ; 2.5 V        ;         ; Column I/O ; N               ; no       ; Off          ;
 ; 136      ; 187        ; 8        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; --       ; --           ;
 ; 137      ; 190        ; 8        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
 ; 138      ; 191        ; 8        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
 ; 139      ;            ; 8        ; VCCIO8                                                    ; power  ;              ; 2.5V    ; --         ;                 ; --       ; --           ;
 ; 140      ;            ;          ; GND                                                       ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; 141      ; 195        ; 8        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
-; 142      ; 201        ; 8        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
+; 142      ; 201        ; 8        ; recieveLine                                               ; output ; 2.5 V        ;         ; Column I/O ; N               ; no       ; Off          ;
 ; 143      ; 202        ; 8        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
 ; 144      ; 203        ; 8        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
 ; EPAD     ;            ;          ; GND                                                       ;        ;              ;         ; --         ;                 ; --       ; --           ;
@@ -576,6 +575,7 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 ; vent1B          ; Incomplete set of assignments ;
 ; vent2A          ; Incomplete set of assignments ;
 ; vent2B          ; Incomplete set of assignments ;
+; heater          ; Incomplete set of assignments ;
 ; backlight       ; Incomplete set of assignments ;
 ; rxclk           ; Incomplete set of assignments ;
 ; transmitLine    ; Incomplete set of assignments ;
@@ -597,10 +597,10 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +----------------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+----------------------------------------+---------------+--------------+
 ; Compilation Hierarchy Node       ; Logic Cells ; Dedicated Logic Registers ; I/O Registers ; Memory Bits ; M9Ks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Full Hierarchy Name                    ; Entity Name   ; Library Name ;
 +----------------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+----------------------------------------+---------------+--------------+
-; |SmartHome                       ; 291 (0)     ; 173 (0)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 21   ; 0            ; 118 (0)      ; 14 (0)            ; 159 (0)          ; |SmartHome                             ; SmartHome     ; work         ;
+; |SmartHome                       ; 301 (0)     ; 173 (0)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 22   ; 0            ; 128 (0)      ; 16 (0)            ; 157 (0)          ; |SmartHome                             ; SmartHome     ; work         ;
 ;    |baud_rate_gen:BAUD_RATE_GEN| ; 18 (18)     ; 9 (9)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 9 (9)        ; 0 (0)             ; 9 (9)            ; |SmartHome|baud_rate_gen:BAUD_RATE_GEN ; baud_rate_gen ; work         ;
-;    |main:MAIN|                   ; 175 (175)   ; 106 (106)                 ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 65 (65)      ; 6 (6)             ; 104 (104)        ; |SmartHome|main:MAIN                   ; main          ; work         ;
-;    |reciever:RECIEVER|           ; 58 (58)     ; 28 (28)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 30 (30)      ; 4 (4)             ; 24 (24)          ; |SmartHome|reciever:RECIEVER           ; reciever      ; work         ;
+;    |main:MAIN|                   ; 184 (184)   ; 106 (106)                 ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 74 (74)      ; 7 (7)             ; 103 (103)        ; |SmartHome|main:MAIN                   ; main          ; work         ;
+;    |reciever:RECIEVER|           ; 59 (59)     ; 28 (28)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 31 (31)      ; 5 (5)             ; 23 (23)          ; |SmartHome|reciever:RECIEVER           ; reciever      ; work         ;
 ;    |transmitter:TRANSMITTER|     ; 44 (44)     ; 30 (30)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 14 (14)      ; 4 (4)             ; 26 (26)          ; |SmartHome|transmitter:TRANSMITTER     ; transmitter   ; work         ;
 +----------------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+----------------------------------------+---------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
@@ -623,6 +623,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; vent1B          ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; vent2A          ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; vent2B          ; Output   ; --            ; --            ; --                    ; --  ; --   ;
+; heater          ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; backlight       ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; rxclk           ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; transmitLine    ; Output   ; --            ; --            ; --                    ; --  ; --   ;
@@ -630,8 +631,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; rx              ; Input    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
 ; rdy_clr         ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
 ; clk             ; Input    ; (0) 0 ps      ; --            ; --                    ; --  ; --   ;
-; sensorOutside1  ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
-; sensorOutside2  ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
+; sensorOutside1  ; Input    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
+; sensorOutside2  ; Input    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
 +-----------------+----------+---------------+---------------+-----------------------+-----+------+
 
 
@@ -643,23 +644,23 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; rx                                     ;                   ;         ;
 ;      - reciever:RECIEVER|always0~0     ; 1                 ; 6       ;
 ;      - reciever:RECIEVER|sample[3]~1   ; 1                 ; 6       ;
-;      - reciever:RECIEVER|scratch[0]~2  ; 1                 ; 6       ;
-;      - reciever:RECIEVER|scratch[3]~4  ; 1                 ; 6       ;
-;      - reciever:RECIEVER|scratch[5]~6  ; 1                 ; 6       ;
-;      - reciever:RECIEVER|scratch[6]~8  ; 1                 ; 6       ;
-;      - reciever:RECIEVER|scratch[7]~10 ; 1                 ; 6       ;
-;      - reciever:RECIEVER|scratch[2]~12 ; 1                 ; 6       ;
-;      - reciever:RECIEVER|scratch[4]~14 ; 1                 ; 6       ;
-;      - reciever:RECIEVER|scratch[1]~16 ; 1                 ; 6       ;
+;      - reciever:RECIEVER|scratch[5]~2  ; 1                 ; 6       ;
+;      - reciever:RECIEVER|scratch[6]~4  ; 1                 ; 6       ;
+;      - reciever:RECIEVER|scratch[7]~6  ; 1                 ; 6       ;
+;      - reciever:RECIEVER|scratch[0]~8  ; 1                 ; 6       ;
+;      - reciever:RECIEVER|scratch[3]~10 ; 1                 ; 6       ;
+;      - reciever:RECIEVER|scratch[4]~12 ; 1                 ; 6       ;
+;      - reciever:RECIEVER|scratch[1]~14 ; 1                 ; 6       ;
+;      - reciever:RECIEVER|scratch[2]~16 ; 1                 ; 6       ;
 ; rdy_clr                                ;                   ;         ;
 ;      - reciever:RECIEVER|rdy~1         ; 0                 ; 6       ;
 ; clk                                    ;                   ;         ;
 ; sensorOutside1                         ;                   ;         ;
-;      - main:MAIN|always2~0             ; 0                 ; 6       ;
-;      - main:MAIN|counterOutside[0]~80  ; 0                 ; 6       ;
+;      - main:MAIN|always2~0             ; 1                 ; 6       ;
+;      - main:MAIN|counterOutside[0]~86  ; 1                 ; 6       ;
 ; sensorOutside2                         ;                   ;         ;
-;      - main:MAIN|always2~0             ; 0                 ; 6       ;
-;      - main:MAIN|counterOutside[0]~80  ; 0                 ; 6       ;
+;      - main:MAIN|always2~0             ; 1                 ; 6       ;
+;      - main:MAIN|counterOutside[0]~86  ; 1                 ; 6       ;
 +----------------------------------------+-------------------+---------+
 
 
@@ -669,16 +670,16 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Name                                         ; Location           ; Fan-Out ; Usage        ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
 +----------------------------------------------+--------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
 ; clk                                          ; PIN_23             ; 173     ; Clock        ; yes    ; Global Clock         ; GCLK2            ; --                        ;
-; main:MAIN|Equal0~8                           ; LCCOMB_X23_Y20_N24 ; 19      ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; main:MAIN|LessThan0~10                       ; LCCOMB_X19_Y23_N28 ; 35      ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
-; main:MAIN|brojac~84                          ; LCCOMB_X14_Y20_N0  ; 26      ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
-; main:MAIN|counterOutside[0]~80               ; LCCOMB_X19_Y23_N0  ; 32      ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; reciever:RECIEVER|bitpos[0]~0                ; LCCOMB_X17_Y20_N24 ; 4       ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; reciever:RECIEVER|rdy~0                      ; LCCOMB_X19_Y20_N26 ; 9       ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; reciever:RECIEVER|state~13                   ; LCCOMB_X17_Y21_N0  ; 3       ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; transmitter:TRANSMITTER|Selector19~0         ; LCCOMB_X24_Y20_N4  ; 8       ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; transmitter:TRANSMITTER|r_Clock_Count[12]~35 ; LCCOMB_X25_Y20_N14 ; 13      ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
-; transmitter:TRANSMITTER|r_SM_Main.CLEANUP    ; FF_X25_Y20_N3      ; 15      ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; main:MAIN|Equal0~8                           ; LCCOMB_X13_Y15_N24 ; 20      ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; main:MAIN|LessThan0~12                       ; LCCOMB_X7_Y18_N0   ; 34      ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
+; main:MAIN|brojac~84                          ; LCCOMB_X19_Y18_N26 ; 26      ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
+; main:MAIN|counterOutside[0]~86               ; LCCOMB_X7_Y20_N26  ; 32      ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; reciever:RECIEVER|bitpos[0]~0                ; LCCOMB_X11_Y19_N24 ; 4       ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; reciever:RECIEVER|rdy~0                      ; LCCOMB_X12_Y20_N8  ; 9       ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; reciever:RECIEVER|state~13                   ; LCCOMB_X12_Y20_N14 ; 3       ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; transmitter:TRANSMITTER|Selector19~0         ; LCCOMB_X14_Y15_N20 ; 8       ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; transmitter:TRANSMITTER|r_Clock_Count[10]~35 ; LCCOMB_X14_Y18_N30 ; 13      ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
+; transmitter:TRANSMITTER|r_SM_Main.CLEANUP    ; FF_X14_Y18_N25     ; 15      ; Clock enable ; no     ; --                   ; --               ; --                        ;
 +----------------------------------------------+--------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
 
 
@@ -687,7 +688,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +------+----------+---------+--------------------------------------+----------------------+------------------+---------------------------+
 ; Name ; Location ; Fan-Out ; Fan-Out Using Intentional Clock Skew ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
 +------+----------+---------+--------------------------------------+----------------------+------------------+---------------------------+
-; clk  ; PIN_23   ; 173     ; 4                                    ; Global Clock         ; GCLK2            ; --                        ;
+; clk  ; PIN_23   ; 173     ; 33                                   ; Global Clock         ; GCLK2            ; --                        ;
 +------+----------+---------+--------------------------------------+----------------------+------------------+---------------------------+
 
 
@@ -696,47 +697,47 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+------------------------+
 ; Routing Resource Type ; Usage                  ;
 +-----------------------+------------------------+
-; Block interconnects   ; 258 / 32,401 ( < 1 % ) ;
+; Block interconnects   ; 261 / 32,401 ( < 1 % ) ;
 ; C16 interconnects     ; 3 / 1,326 ( < 1 % )    ;
-; C4 interconnects      ; 54 / 21,816 ( < 1 % )  ;
-; Direct links          ; 133 / 32,401 ( < 1 % ) ;
+; C4 interconnects      ; 78 / 21,816 ( < 1 % )  ;
+; Direct links          ; 134 / 32,401 ( < 1 % ) ;
 ; Global clocks         ; 1 / 10 ( 10 % )        ;
-; Local interconnects   ; 199 / 10,320 ( 2 % )   ;
-; R24 interconnects     ; 8 / 1,289 ( < 1 % )    ;
-; R4 interconnects      ; 95 / 28,186 ( < 1 % )  ;
+; Local interconnects   ; 214 / 10,320 ( 2 % )   ;
+; R24 interconnects     ; 6 / 1,289 ( < 1 % )    ;
+; R4 interconnects      ; 67 / 28,186 ( < 1 % )  ;
 +-----------------------+------------------------+
 
 
 +----------------------------------------------------------------------------+
 ; LAB Logic Elements                                                         ;
 +---------------------------------------------+------------------------------+
-; Number of Logic Elements  (Average = 12.65) ; Number of LABs  (Total = 23) ;
+; Number of Logic Elements  (Average = 10.75) ; Number of LABs  (Total = 28) ;
 +---------------------------------------------+------------------------------+
-; 1                                           ; 2                            ;
-; 2                                           ; 1                            ;
-; 3                                           ; 2                            ;
-; 4                                           ; 0                            ;
+; 1                                           ; 5                            ;
+; 2                                           ; 2                            ;
+; 3                                           ; 0                            ;
+; 4                                           ; 2                            ;
 ; 5                                           ; 0                            ;
 ; 6                                           ; 0                            ;
 ; 7                                           ; 0                            ;
 ; 8                                           ; 0                            ;
-; 9                                           ; 0                            ;
-; 10                                          ; 0                            ;
+; 9                                           ; 1                            ;
+; 10                                          ; 1                            ;
 ; 11                                          ; 0                            ;
 ; 12                                          ; 0                            ;
-; 13                                          ; 2                            ;
-; 14                                          ; 0                            ;
-; 15                                          ; 1                            ;
-; 16                                          ; 15                           ;
+; 13                                          ; 1                            ;
+; 14                                          ; 1                            ;
+; 15                                          ; 2                            ;
+; 16                                          ; 13                           ;
 +---------------------------------------------+------------------------------+
 
 
 +-------------------------------------------------------------------+
 ; LAB-wide Signals                                                  ;
 +------------------------------------+------------------------------+
-; LAB-wide Signals  (Average = 1.26) ; Number of LABs  (Total = 23) ;
+; LAB-wide Signals  (Average = 1.14) ; Number of LABs  (Total = 28) ;
 +------------------------------------+------------------------------+
-; 1 Clock                            ; 19                           ;
+; 1 Clock                            ; 22                           ;
 ; 1 Clock enable                     ; 5                            ;
 ; 1 Sync. clear                      ; 5                            ;
 +------------------------------------+------------------------------+
@@ -745,38 +746,38 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------------------------------------------------------------+
 ; LAB Signals Sourced                                                         ;
 +----------------------------------------------+------------------------------+
-; Number of Signals Sourced  (Average = 20.17) ; Number of LABs  (Total = 23) ;
+; Number of Signals Sourced  (Average = 16.93) ; Number of LABs  (Total = 28) ;
 +----------------------------------------------+------------------------------+
 ; 0                                            ; 0                            ;
 ; 1                                            ; 2                            ;
-; 2                                            ; 0                            ;
-; 3                                            ; 1                            ;
-; 4                                            ; 1                            ;
+; 2                                            ; 4                            ;
+; 3                                            ; 0                            ;
+; 4                                            ; 2                            ;
 ; 5                                            ; 0                            ;
 ; 6                                            ; 1                            ;
 ; 7                                            ; 0                            ;
 ; 8                                            ; 0                            ;
-; 9                                            ; 0                            ;
+; 9                                            ; 1                            ;
 ; 10                                           ; 0                            ;
-; 11                                           ; 0                            ;
+; 11                                           ; 1                            ;
 ; 12                                           ; 0                            ;
-; 13                                           ; 0                            ;
+; 13                                           ; 1                            ;
 ; 14                                           ; 0                            ;
 ; 15                                           ; 0                            ;
-; 16                                           ; 2                            ;
+; 16                                           ; 0                            ;
 ; 17                                           ; 0                            ;
 ; 18                                           ; 0                            ;
 ; 19                                           ; 0                            ;
-; 20                                           ; 3                            ;
-; 21                                           ; 0                            ;
+; 20                                           ; 2                            ;
+; 21                                           ; 1                            ;
 ; 22                                           ; 0                            ;
 ; 23                                           ; 1                            ;
 ; 24                                           ; 2                            ;
 ; 25                                           ; 1                            ;
-; 26                                           ; 2                            ;
-; 27                                           ; 0                            ;
-; 28                                           ; 0                            ;
-; 29                                           ; 5                            ;
+; 26                                           ; 0                            ;
+; 27                                           ; 2                            ;
+; 28                                           ; 3                            ;
+; 29                                           ; 2                            ;
 ; 30                                           ; 0                            ;
 ; 31                                           ; 0                            ;
 ; 32                                           ; 2                            ;
@@ -786,62 +787,57 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------------------------------------------------------------------+
 ; LAB Signals Sourced Out                                                        ;
 +-------------------------------------------------+------------------------------+
-; Number of Signals Sourced Out  (Average = 8.13) ; Number of LABs  (Total = 23) ;
+; Number of Signals Sourced Out  (Average = 6.43) ; Number of LABs  (Total = 28) ;
 +-------------------------------------------------+------------------------------+
 ; 0                                               ; 0                            ;
-; 1                                               ; 2                            ;
-; 2                                               ; 2                            ;
-; 3                                               ; 2                            ;
-; 4                                               ; 2                            ;
-; 5                                               ; 2                            ;
-; 6                                               ; 0                            ;
+; 1                                               ; 6                            ;
+; 2                                               ; 4                            ;
+; 3                                               ; 3                            ;
+; 4                                               ; 0                            ;
+; 5                                               ; 1                            ;
+; 6                                               ; 2                            ;
 ; 7                                               ; 0                            ;
-; 8                                               ; 3                            ;
-; 9                                               ; 3                            ;
-; 10                                              ; 0                            ;
-; 11                                              ; 0                            ;
-; 12                                              ; 0                            ;
+; 8                                               ; 2                            ;
+; 9                                               ; 2                            ;
+; 10                                              ; 1                            ;
+; 11                                              ; 1                            ;
+; 12                                              ; 1                            ;
 ; 13                                              ; 1                            ;
-; 14                                              ; 1                            ;
-; 15                                              ; 1                            ;
-; 16                                              ; 4                            ;
+; 14                                              ; 2                            ;
+; 15                                              ; 0                            ;
+; 16                                              ; 2                            ;
 +-------------------------------------------------+------------------------------+
 
 
 +----------------------------------------------------------------------------+
 ; LAB Distinct Inputs                                                        ;
 +---------------------------------------------+------------------------------+
-; Number of Distinct Inputs  (Average = 9.83) ; Number of LABs  (Total = 23) ;
+; Number of Distinct Inputs  (Average = 8.18) ; Number of LABs  (Total = 28) ;
 +---------------------------------------------+------------------------------+
 ; 0                                           ; 0                            ;
 ; 1                                           ; 0                            ;
-; 2                                           ; 2                            ;
-; 3                                           ; 5                            ;
-; 4                                           ; 2                            ;
-; 5                                           ; 3                            ;
+; 2                                           ; 0                            ;
+; 3                                           ; 6                            ;
+; 4                                           ; 8                            ;
+; 5                                           ; 2                            ;
 ; 6                                           ; 1                            ;
 ; 7                                           ; 0                            ;
 ; 8                                           ; 0                            ;
-; 9                                           ; 0                            ;
-; 10                                          ; 0                            ;
+; 9                                           ; 1                            ;
+; 10                                          ; 1                            ;
 ; 11                                          ; 1                            ;
-; 12                                          ; 2                            ;
+; 12                                          ; 1                            ;
 ; 13                                          ; 0                            ;
 ; 14                                          ; 1                            ;
-; 15                                          ; 0                            ;
-; 16                                          ; 1                            ;
+; 15                                          ; 1                            ;
+; 16                                          ; 2                            ;
 ; 17                                          ; 1                            ;
 ; 18                                          ; 0                            ;
 ; 19                                          ; 0                            ;
-; 20                                          ; 0                            ;
-; 21                                          ; 1                            ;
+; 20                                          ; 1                            ;
+; 21                                          ; 0                            ;
 ; 22                                          ; 0                            ;
 ; 23                                          ; 1                            ;
-; 24                                          ; 1                            ;
-; 25                                          ; 0                            ;
-; 26                                          ; 0                            ;
-; 27                                          ; 0                            ;
-; 28                                          ; 1                            ;
 +---------------------------------------------+------------------------------+
 
 
@@ -902,9 +898,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+
 ; Pin/Rules          ; IO_000001    ; IO_000002    ; IO_000003    ; IO_000004    ; IO_000005    ; IO_000006 ; IO_000007    ; IO_000008    ; IO_000009 ; IO_000010 ; IO_000011    ; IO_000012    ; IO_000013    ; IO_000014    ; IO_000015    ; IO_000018    ; IO_000019    ; IO_000020    ; IO_000021    ; IO_000022    ; IO_000023    ; IO_000024    ; IO_000026    ; IO_000027    ; IO_000045    ; IO_000046    ; IO_000047    ; IO_000033 ; IO_000034    ; IO_000042    ;
 +--------------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+
-; Total Pass         ; 17           ; 0            ; 17           ; 0            ; 0            ; 21        ; 17           ; 0            ; 21        ; 21        ; 0            ; 16           ; 0            ; 0            ; 5            ; 0            ; 16           ; 5            ; 0            ; 0            ; 0            ; 16           ; 0            ; 0            ; 0            ; 0            ; 0            ; 21        ; 0            ; 0            ;
+; Total Pass         ; 18           ; 0            ; 18           ; 0            ; 0            ; 22        ; 18           ; 0            ; 22        ; 22        ; 0            ; 17           ; 0            ; 0            ; 5            ; 0            ; 17           ; 5            ; 0            ; 0            ; 0            ; 17           ; 0            ; 0            ; 0            ; 0            ; 0            ; 22        ; 0            ; 0            ;
 ; Total Unchecked    ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ; 0         ; 0         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ;
-; Total Inapplicable ; 4            ; 21           ; 4            ; 21           ; 21           ; 0         ; 4            ; 21           ; 0         ; 0         ; 21           ; 5            ; 21           ; 21           ; 16           ; 21           ; 5            ; 16           ; 21           ; 21           ; 21           ; 5            ; 21           ; 21           ; 21           ; 21           ; 21           ; 0         ; 21           ; 21           ;
+; Total Inapplicable ; 4            ; 22           ; 4            ; 22           ; 22           ; 0         ; 4            ; 22           ; 0         ; 0         ; 22           ; 5            ; 22           ; 22           ; 17           ; 22           ; 5            ; 17           ; 22           ; 22           ; 22           ; 5            ; 22           ; 22           ; 22           ; 22           ; 22           ; 0         ; 22           ; 22           ;
 ; Total Fail         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ; 0         ; 0         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ;
 ; rdy                ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; kitchenlight       ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
@@ -918,6 +914,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; vent1B             ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; vent2A             ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; vent2B             ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; heater             ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; backlight          ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; rxclk              ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; transmitLine       ; Pass         ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
@@ -966,25 +963,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------------+--------+
 
 
-+------------------------------------------------------------+
-; Estimated Delay Added for Hold Timing Summary              ;
-+-----------------+----------------------+-------------------+
-; Source Clock(s) ; Destination Clock(s) ; Delay Added in ns ;
-+-----------------+----------------------+-------------------+
-Note: For more information on problematic transfers, consider running the Fitter again with the Optimize hold timing option (Settings Menu) turned off.
-This will disable optimization of problematic paths and expose them for further analysis using the Timing Analyzer.
-
-
-+-----------------------------------------------------------------------+
-; Estimated Delay Added for Hold Timing Details                         ;
-+---------------------------+-----------------------+-------------------+
-; Source Register           ; Destination Register  ; Delay Added in ns ;
-+---------------------------+-----------------------+-------------------+
-; reciever:RECIEVER|data[3] ; main:MAIN|alarmSystem ; 0.072             ;
-+---------------------------+-----------------------+-------------------+
-Note: This table only shows the top 1 path(s) that have the largest delay added for hold.
-
-
 +-----------------+
 ; Fitter Messages ;
 +-----------------+
@@ -1006,7 +984,7 @@ Info (169124): Fitter converted 5 user pins into dedicated programming pins
     Info (169125): Pin ~ALTERA_DATA0~ is reserved at location 13
     Info (169125): Pin ~ALTERA_nCEO~ is reserved at location 101
 Warning (15714): Some pins have incomplete I/O assignments. Refer to the I/O Assignment Warnings report for details
-Critical Warning (169085): No exact pin location assignment(s) for 4 pins of 21 total pins. For the list of pins please refer to the I/O Assignment Warnings table in the fitter report.
+Critical Warning (169085): No exact pin location assignment(s) for 4 pins of 22 total pins. For the list of pins please refer to the I/O Assignment Warnings table in the fitter report.
 Critical Warning (332012): Synopsys Design Constraints File file not found: 'SmartHome.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
 Info (332144): No user constrained base clocks found in the design
 Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
@@ -1024,13 +1002,13 @@ Info (176215): I/O bank details before I/O pin placement
     Info (176214): Statistics of I/O banks
         Info (176213): I/O bank number 1 does not use VREF pins and has 2.5V VCCIO pins. 9 total pin(s) used --  2 pins available
         Info (176213): I/O bank number 2 does not use VREF pins and has 2.5V VCCIO pins. 2 total pin(s) used --  6 pins available
-        Info (176213): I/O bank number 3 does not use VREF pins and has undetermined VCCIO pins. 0 total pin(s) used --  11 pins available
+        Info (176213): I/O bank number 3 does not use VREF pins and has 2.5V VCCIO pins. 1 total pin(s) used --  10 pins available
         Info (176213): I/O bank number 4 does not use VREF pins and has undetermined VCCIO pins. 0 total pin(s) used --  14 pins available
         Info (176213): I/O bank number 5 does not use VREF pins and has undetermined VCCIO pins. 0 total pin(s) used --  13 pins available
         Info (176213): I/O bank number 6 does not use VREF pins and has 2.5V VCCIO pins. 2 total pin(s) used --  8 pins available
         Info (176213): I/O bank number 7 does not use VREF pins and has 2.5V VCCIO pins. 7 total pin(s) used --  6 pins available
         Info (176213): I/O bank number 8 does not use VREF pins and has 2.5V VCCIO pins. 2 total pin(s) used --  10 pins available
-Info (171121): Fitter preparation operations ending: elapsed time is 00:00:02
+Info (171121): Fitter preparation operations ending: elapsed time is 00:00:01
 Info (14896): Fitter has disabled Advanced Physical Optimization because it is not supported for the current family.
 Info (170189): Fitter placement preparation operations beginning
 Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:00
@@ -1042,18 +1020,18 @@ Info (170195): Router estimated average interconnect usage is 0% of the availabl
     Info (170196): Router estimated peak interconnect usage is 0% of the available device resources in the region that extends from location X11_Y12 to location X22_Y24
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
-Info (170194): Fitter routing operations ending: elapsed time is 00:00:01
-Info (11888): Total time spent on timing analysis during the Fitter is 0.25 seconds.
+Info (170194): Fitter routing operations ending: elapsed time is 00:00:00
+Info (11888): Total time spent on timing analysis during the Fitter is 0.23 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:00
+Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:01
 Info (144001): Generated suppressed messages file E:/SmartHomeSystem/FPGA/output_files/SmartHome.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 5 warnings
-    Info: Peak virtual memory: 5497 megabytes
-    Info: Processing ended: Sat Feb 29 15:51:40 2020
-    Info: Elapsed time: 00:00:11
+    Info: Peak virtual memory: 5495 megabytes
+    Info: Processing ended: Tue Jun 23 23:40:51 2020
+    Info: Elapsed time: 00:00:05
     Info: Total CPU time (on all processors): 00:00:06
 
 

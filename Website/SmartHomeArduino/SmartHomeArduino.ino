@@ -8,41 +8,37 @@
 #include "ESPAsyncWebServer.h" // Library for creation of server on your local network
 #include "SPIFFS.h" // Library that allows uploading data (index.html, javascript, css) to your ESP32)
 #include <HardwareSerial.h> // Library for Serial communication ESP32 - FPGA
-#include <Fuzzy.h>
-#include <HTTPClient.h>
-Fuzzy *fuzzy = new Fuzzy();
-float optimalTemperature = 25;
+#include <Fuzzy.h> // Library for FUZZY sets - rules
+#include <HTTPClient.h> // Library to POST HTTP requests and upload data to our website
+Fuzzy *fuzzy = new Fuzzy(); // Creating new FUZZY object that can contain inputs,outputs and rules
+float optimalTemperature = 25; // Set OPTIMAL temperature for the system
+bool automation = false;
 
 HardwareSerial SerialESP(2); //Create an object on UART 2 (ESP32 has few UA
 
 #define RXD2 16 // RX pin 
 #define TXD2 17 // TX pin
-#define InsideDHTPin 5
-#define OutsideDHTPin 18
+#define InsideDHTPin 5 // DHT 22 PIN
+#define OutsideDHTPin 18 // DHT 11 PIN
 
-DHT OutDHT(OutsideDHTPin, DHT11);
+DHT OutDHT(OutsideDHTPin, DHT11); //Create a DHT11 object
 DHT InDHT(InsideDHTPin, DHT22); //Create a DHT22 object
 
 // Network credentials
-const char* ssid = "8cbea0";
-const char* password = "232125668";
-const char* serverName = "http://smarthomedata.000webhostapp.com/post-esp-data.php";
-String apiKeyValue = "tPmAT5Ab3j7F9";
-String sensorName = "BME280";
-String sensorLocation = "Office";
-
-
+const char* ssid = "8cbea0"; // name of the Wi-FI
+const char* password = "232125668";// password for Wi-Fi
+const char* serverName = "http://smarthomedata.000webhostapp.com/post-esp-data.php"; // Our website where we post sensor data
+String apiKeyValue = "tPmAT5Ab3j7F9"; // Random API key to protect our website / make it 'unique'
 
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
 
-
-// function to read temperature from inside DHT sensor
+// Function to read temperature from inside DHT sensor
 String readDHTTemp() {
   // Read temperature as Celsius (the default)
   float temperature = InDHT.readTemperature();
   if (isnan(temperature)) {
-    Serial.println("Failed to read from BME280 sensor!");
+    Serial.println("Failed to read from DHT 22 (inside) sensor!");
     return "";
   }
   else {
@@ -51,10 +47,10 @@ String readDHTTemp() {
 }
 
 String readDHTHumidity() {
-  // Read temperature as Celsius (the default)
+  // Read humidity in %
   float humidity = InDHT.readHumidity();
   if (isnan(humidity)) {
-    Serial.println("Failed to read from BME280 sensor!");
+    Serial.println("Failed to read from DHT 22 (inside) sensor!");
     return "";
   }
   else {
@@ -67,7 +63,7 @@ String readDHTOutTemperature() {
   // Read temperature as Celsius (the default)
   float temperature = OutDHT.readTemperature();
   if (isnan(temperature)) {
-    Serial.println("Failed to read from BME280 sensor!");
+    Serial.println("Failed to read from DHT 11 (outside) sensor!");
     return "";
   }
   else {
@@ -77,10 +73,10 @@ String readDHTOutTemperature() {
 
 
 String readDHTOutHumidity() {
-  // Read temperature as Celsius (the default)
+  // Read humidity %
   float humidity = OutDHT.readHumidity();
   if (isnan(humidity)) {
-    Serial.println("Failed to read from BME280 sensor!");
+    Serial.println("Failed to read from DHT 11 (outside) sensor!");
     return "";
   }
   else {
@@ -143,7 +139,6 @@ void setup() {
     request->send(SPIFFS, "/script.js", "text/javascript");
   });
 
-
   // response to HTTP request made from javascript file
   // if GET request with /temperature was sent, send back the value of temperature in plain text
   // 200 is successfull code.
@@ -164,18 +159,35 @@ void setup() {
     request->send_P(200, "text/plain", readDHTOutHumidity().c_str());
   });
 
-  server.on("/changeTemperature", HTTP_GET, [](AsyncWebServerRequest * request) {
-    //if GET request that is linked to /ledroom1 has a parameter named led1, then read the value of that parameter
-    if (request->hasParam("temperatureValue")) {
-      int byteVal = (request->getParam("temperatureValue")->value().toInt());  //value() returns STRING which we convert to INT
-      setOptimalTemperature(byteVal);
+
+  server.on("/activateRegulation", HTTP_GET, [](AsyncWebServerRequest * request) {
+    //if GET request that is linked to /changeTemperature has a parameter named temperatureValue, then read the value of that parameter
+    if (request->hasParam("regulation")) {
+      int byteVal = (request->getParam("regulation")->value().toInt());  //value() returns STRING which we convert to INT
+      char charValHeater = 36;
+      char charValVents = 26;
+      SerialESP.print(charValHeater); // send character to FPGA
+      delay(100);
+      SerialESP.print(charValVents);
+      if (byteVal == 50) automation = true;
+      else automation = false;
     }
     request->send(SPIFFS, "/index.html");
   });
 
+  //set OPTIMAL temperature in the house/room
+  server.on("/changeTemperature", HTTP_GET, [](AsyncWebServerRequest * request) {
+    //if GET request that is linked to /changeTemperature has a parameter named temperatureValue, then read the value of that parameter
+    if (request->hasParam("temperatureValue")) {
+      int byteVal = (request->getParam("temperatureValue")->value().toInt());  //value() returns STRING which we convert to INT
+      if (automation)
+        setOptimalTemperature(byteVal); // Call function that sets optimal temperature using FUZZY system
+    }
+    request->send(SPIFFS, "/index.html");
+  });
 
   server.on("/alarmsystem", HTTP_GET, [](AsyncWebServerRequest * request) {
-    //if GET request that is linked to /ledroom1 has a parameter named led1, then read the value of that parameter
+    //if GET request that is linked to /alarmsystem has a parameter named alarm, then read the value of that parameter
     if (request->hasParam("alarm")) {
       int byteVal = (request->getParam("alarm")->value().toInt());  //value() returns STRING which we convert to INT
       char charVal = byteVal; //INT is converted to char because on recieving END we decode characters of 8 bit
@@ -186,7 +198,6 @@ void setup() {
   });
 
   server.on("/garagedoors", HTTP_GET, [](AsyncWebServerRequest * request) {
-    //if GET request that is linked to /ledroom1 has a parameter named led1, then read the value of that parameter
     if (request->hasParam("garageopen")) {
       int byteVal = (request->getParam("garageopen")->value().toInt());  //value() returns STRING which we convert to INT
       char charVal = byteVal; //INT is converted to char because on recieving END we decode characters of 8 bit
@@ -196,7 +207,6 @@ void setup() {
   });
 
   server.on("/kitchenlight", HTTP_GET, [](AsyncWebServerRequest * request) {
-    //if GET request that is linked to /ledroom1 has a parameter named led1, then read the value of that parameter
     if (request->hasParam("kitchen")) {
       int byteVal = (request->getParam("kitchen")->value().toInt());  //value() returns STRING which we convert to INT
       char charVal = byteVal; //INT is converted to char because on recieving END we decode characters of 8 bit
@@ -205,9 +215,7 @@ void setup() {
     request->send(SPIFFS, "/index.html");
   });
 
-
   server.on("/livinglight", HTTP_GET, [](AsyncWebServerRequest * request) {
-    //if GET request that is linked to /ledroom1 has a parameter named led1, then read the value of that parameter
     if (request->hasParam("living")) {
       int byteVal = (request->getParam("living")->value().toInt());  //value() returns STRING which we convert to INT
       char charVal = byteVal; //INT is converted to char because on recieving END we decode characters of 8 bit
@@ -216,9 +224,7 @@ void setup() {
     request->send(SPIFFS, "/index.html");
   });
 
-
   server.on("/dininglight", HTTP_GET, [](AsyncWebServerRequest * request) {
-    //if GET request that is linked to /ledroom1 has a parameter named led1, then read the value of that parameter
     if (request->hasParam("dining")) {
       int byteVal = (request->getParam("dining")->value().toInt());  //value() returns STRING which we convert to INT
       char charVal = byteVal; //INT is converted to char because on recieving END we decode characters of 8 bit
@@ -229,7 +235,6 @@ void setup() {
 
 
   server.on("/frontlight", HTTP_GET, [](AsyncWebServerRequest * request) {
-    //if GET request that is linked to /ledroom1 has a parameter named led1, then read the value of that parameter
     if (request->hasParam("front")) {
       int byteVal = (request->getParam("front")->value().toInt());  //value() returns STRING which we convert to INT
       char charVal = byteVal; //INT is converted to char because on recieving END we decode characters of 8 bit
@@ -240,7 +245,6 @@ void setup() {
 
 
   server.on("/garagelight", HTTP_GET, [](AsyncWebServerRequest * request) {
-    //if GET request that is linked to /ledroom1 has a parameter named led1, then read the value of that parameter
     if (request->hasParam("garage")) {
       int byteVal = (request->getParam("garage")->value().toInt());  //value() returns STRING which we convert to INT
       char charVal = byteVal; //INT is converted to char because on recieving END we decode characters of 8 bit
@@ -251,7 +255,6 @@ void setup() {
 
 
   server.on("/backlight", HTTP_GET, [](AsyncWebServerRequest * request) {
-    //if GET request that is linked to /ledroom1 has a parameter named led1, then read the value of that parameter
     if (request->hasParam("back")) {
       int byteVal = (request->getParam("back")->value().toInt());  //value() returns STRING which we convert to INT
       char charVal = byteVal; //INT is converted to char because on recieving END we decode characters of 8 bit
@@ -261,47 +264,27 @@ void setup() {
   });
 
 
-  // Route to set GPIO to HIGH
-  server.on("/on", HTTP_GET, [](AsyncWebServerRequest * request) {
-    SerialESP.write(1);
-    request->send(SPIFFS, "/index.html");
-  });
-
-  // Route to set GPIO to LOW
-  server.on("/off", HTTP_GET, [](AsyncWebServerRequest * request) {
-    SerialESP.write(0);
-    request->send(SPIFFS, "/index.html");
-  });
-
-  server.on("/offbutton2", HTTP_GET, [](AsyncWebServerRequest * request) {
-    SerialESP.write(1);
-    request->send(SPIFFS, "/index.html");
-  });
-  // to this
-
-  server.on("/ledroom1", HTTP_GET, [](AsyncWebServerRequest * request) {
-    //if GET request that is linked to /ledroom1 has a parameter named led1, then read the value of that parameter
-    if (request->hasParam("led1")) {
-      int byteVal = (request->getParam("led1")->value().toInt());  //value() returns STRING which we convert to INT
+  server.on("/ventON", HTTP_GET, [](AsyncWebServerRequest * request) {
+    if (request->hasParam("vent")) {
+      int byteVal = (request->getParam("vent")->value().toInt());  //value() returns STRING which we convert to INT
       char charVal = byteVal; //INT is converted to char because on recieving END we decode characters of 8 bit
       SerialESP.print(charVal); // send character to FPGA
     }
     request->send(SPIFFS, "/index.html");
   });
 
-  server.on("/ledroom2", HTTP_GET, [](AsyncWebServerRequest * request) {
-    if (request->hasParam("led2")) {
-      int byteVal = (request->getParam("led2")->value().toInt());
-      char charVal = byteVal;
-      SerialESP.print(charVal);
+  server.on("/heaterON", HTTP_GET, [](AsyncWebServerRequest * request) {
+    if (request->hasParam("heater")) {
+      int byteVal = (request->getParam("heater")->value().toInt());  //value() returns STRING which we convert to INT
+      char charVal = byteVal; //INT is converted to char because on recieving END we decode characters of 8 bit
+      SerialESP.print(charVal); // send character to FPGA
     }
     request->send(SPIFFS, "/index.html");
   });
 
-
   // Start server
   server.begin();
-  // Start DHT inside and outside sensor
+  // Start DHT 22 inside and DHT 11 outside sensor
   InDHT.begin();
   OutDHT.begin();
 }
@@ -313,53 +296,42 @@ void loop() {
     Serial.println(SerialESP.read());
     delay(5);
   }
+  HTTPClient http;
+  // Your Domain name with URL path or IP address with path
+  http.begin(serverName);
 
-   HTTPClient http;
-    
-    // Your Domain name with URL path or IP address with path
-    http.begin(serverName);
-    
-    // Specify content-type header
-    http.addHeader("Content-Type", "application/x-www-form-urlencoded");
-    
-    // Prepare your HTTP POST request data
-    String httpRequestData = "api_key=" + apiKeyValue + "&value1=" + String(InDHT.readTemperature())
+  // Specify content-type header
+  http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  // Prepare your HTTP POST request data
+  String httpRequestData = "api_key=" + apiKeyValue + "&value1=" + String(InDHT.readTemperature())
                            + "&value2=" + String(InDHT.readHumidity()) + "&value3=" + String(OutDHT.readTemperature()) + "&value4=" + String(OutDHT.readHumidity()) + "";
-    Serial.print("httpRequestData: ");
-    Serial.print("httpRequestData: ");
-    Serial.println(httpRequestData);
-    
-    // You can comment the httpRequestData variable above
-    // then, use the httpRequestData variable below (for testing purposes without the BME280 sensor)
-    //String httpRequestData = "api_key=tPmAT5Ab3j7F9&sensor=BME280&location=Office&value1=24.75&value2=49.54&value3=1005.14";
+  Serial.print("httpRequestData: ");
+  Serial.println(httpRequestData);
 
-    // Send HTTP POST request
-    int httpResponseCode = http.POST(httpRequestData);
-     
-    // If you need an HTTP request with a content type: text/plain
-    //http.addHeader("Content-Type", "text/plain");
-    //int httpResponseCode = http.POST("Hello, World!");
-    
-    // If you need an HTTP request with a content type: application/json, use the following:
-    //http.addHeader("Content-Type", "application/json");
-    //int httpResponseCode = http.POST("{\"value1\":\"19\",\"value2\":\"67\",\"value3\":\"78\"}");
-        
-    if (httpResponseCode>0) {
-      Serial.print("HTTP Response code: ");
-      Serial.println(httpResponseCode);
-    }
-    else {
-      Serial.print("Error code: ");
-      Serial.println(httpResponseCode);
-    }
-    // Free resources
-    http.end();
+  // Send HTTP POST request
+  int httpResponseCode = http.POST(httpRequestData);
 
+  if (httpResponseCode > 0) {
+    Serial.print("HTTP Response code: ");
+    Serial.println(httpResponseCode);
+  }
+  else {
+    Serial.print("Error code: ");
+    Serial.println(httpResponseCode);
+  }
+  // Free resources
+  http.end();
 
-
-  
-  setOptimalTemperature(0);
-  delay(12000);
+  Serial.print("Inside loop");
+  Serial.println(optimalTemperature);
+  //if ((temperatureRead <= optimalTemperature - 3 || temperatureRead >= optimalTemperature + 3) && automation) {
+  if (automation) {
+    Serial.print("Outside loop");
+    Serial.println(optimalTemperature);
+    setOptimalTemperature(optimalTemperature);
+  }
+  delay(3000);
 }
 
 void setOptimalTemperature(float recievedTemperature) {
@@ -372,13 +344,13 @@ void setOptimalTemperature(float recievedTemperature) {
   // Instantiating a FuzzyInput object
   FuzzyInput *temperature = new FuzzyInput(1);
   // Instantiating a FuzzySet object
-  FuzzySet *low = new FuzzySet(0, 0, optimalTemperature - 2, optimalTemperature+2);
+  FuzzySet *low = new FuzzySet(0, 0, optimalTemperature - 3, optimalTemperature);
 
   // Instantiating a FuzzySet object
-  FuzzySet *optimal = new FuzzySet(optimalTemperature - 2, optimalTemperature, optimalTemperature, optimalTemperature + 2);
+  FuzzySet *optimal = new FuzzySet(optimalTemperature - 5, optimalTemperature - 2, optimalTemperature + 2, optimalTemperature + 5);
 
   // Instantiating a FuzzySet object
-  FuzzySet *high = new FuzzySet(optimalTemperature-3, optimalTemperature, 50, 50);
+  FuzzySet *high = new FuzzySet(optimalTemperature, optimalTemperature + 3, 50, 50);
 
   temperature->addFuzzySet(low);
   // Including the FuzzySet into FuzzyInput
@@ -392,10 +364,10 @@ void setOptimalTemperature(float recievedTemperature) {
   FuzzyOutput *vent = new FuzzyOutput(1);
   FuzzyOutput *heater = new FuzzyOutput(2);
   // Instantiating a FuzzySet object
-  FuzzySet *ventOff = new FuzzySet(19, 21, 21, 23);
-  FuzzySet *ventOn = new FuzzySet(20, 22, 22, 24);
+  FuzzySet *ventOn = new FuzzySet(19, 21, 21, 23);
+  FuzzySet *ventOff = new FuzzySet(24, 26, 26, 28);
   FuzzySet *heaterOn = new FuzzySet(29, 31, 31, 33);
-  FuzzySet *heaterOff = new FuzzySet(30, 32, 32, 34);
+  FuzzySet *heaterOff = new FuzzySet(34, 36, 36, 38);
 
   // Including the FuzzySet into FuzzyOutput
   vent->addFuzzySet(ventOff);
@@ -444,51 +416,75 @@ void setOptimalTemperature(float recievedTemperature) {
   fuzzy->addFuzzyRule(fuzzyRule03);
 
 
-
   FuzzyRuleConsequent *thenHeaterOn = new FuzzyRuleConsequent();
   // Including a FuzzySet to this FuzzyRuleConsequent
-  thenVentOff->addOutput(heaterOn);
+  thenHeaterOn->addOutput(heaterOn);
   // Instantiating a FuzzyRule objects
-  FuzzyRule *fuzzyRule04 = new FuzzyRule(1, ifTemperatureLow, thenHeaterOn);
+  FuzzyRule *fuzzyRule04 = new FuzzyRule(4, ifTemperatureLow, thenHeaterOn);
   // Including the FuzzyRule into Fuzzy
   fuzzy->addFuzzyRule(fuzzyRule04);
 
   // Instantiating a FuzzyRuleConsequent objects
   FuzzyRuleConsequent *thenHeaterOff = new FuzzyRuleConsequent();
   // Including a FuzzySet to this FuzzyRuleConsequent
-  thenVentOn->addOutput(heaterOff);
+  thenHeaterOff->addOutput(heaterOff);
 
-  
-  FuzzyRule *fuzzyRule05 = new FuzzyRule(2, ifTemperatureOptimal, thenHeaterOff);
+
+  FuzzyRule *fuzzyRule05 = new FuzzyRule(5, ifTemperatureOptimal, thenHeaterOff);
   // Including the FuzzyRule into Fuzzy
   fuzzy->addFuzzyRule(fuzzyRule05);
 
 
   // Instantiating a FuzzyRule objects
-  FuzzyRule *fuzzyRule06 = new FuzzyRule(3, ifTemperatureHigh, thenHeaterOff);
+  FuzzyRule *fuzzyRule06 = new FuzzyRule(6, ifTemperatureHigh, thenHeaterOff);
   // Including the FuzzyRule into Fuzzy
   fuzzy->addFuzzyRule(fuzzyRule06);
 
+  float temperatureReading = InDHT.readTemperature();
+  fuzzy->setInput(1, temperatureReading);
+  // Running the Fuzzification
+  fuzzy->fuzzify();
+  // Running the Defuzzification
+  int output1 = fuzzy->defuzzify(1);
+  int output2 = fuzzy->defuzzify(2);
+  char charOutput1 = output1; //INT is converted to char because on recieving END we decode characters of 8 bit
+  char charOutput2 = output2; //INT is converted to char because on recieving END we decode characters of 8 bit
 
+  SerialESP.print(charOutput1); // send character to FPGA
+  SerialESP.print(charOutput2); // send character to FPGA
+
+
+  Serial.print(optimalTemperature);
+  Serial.print(" ");
+  Serial.print(temperatureReading);
+  Serial.print(" ");
+  Serial.print("output1 ");
+  Serial.println(output1);
+  Serial.print("output2 ");
+  Serial.println(output2);
+  Serial.print("pertinence: ");
+
+  Serial.print(heaterOn->getPertinence());
+  Serial.print(" ");
+  Serial.print(heaterOff->getPertinence());
+  Serial.print(" ");
+  Serial.print(ventOn->getPertinence());
+  Serial.print(" ");
+  Serial.println(ventOff->getPertinence());
+
+  Serial.print("ruleFIRED:" );
+  Serial.print(fuzzy->isFiredRule(1));
+  Serial.print(" ");
+  Serial.print(fuzzy->isFiredRule(2));
+  Serial.print(" ");
+  Serial.print(fuzzy->isFiredRule(3));
 
   
-  int i = 0;
-  while (i < 50) {
-    float temperatureReading = InDHT.readTemperature();
-    fuzzy->setInput(1, i);
-    // Running the Fuzzification
-    fuzzy->fuzzify();
-    // Running the Defuzzification
-    float output1 = fuzzy->defuzzify(1);
-    float output2 = fuzzy->defuzzify(2);
-    Serial.print(i);
-    Serial.print(" ");
-    Serial.print("output1 ");
-    Serial.println(output1);
-       Serial.print("output2 ");
-    Serial.println(output2);
-    i++;
-  }
-
+  Serial.print(" ");
+  Serial.print(fuzzy->isFiredRule(4));
+  Serial.print(" ");
+  Serial.print(fuzzy->isFiredRule(5));
+  Serial.print(" ");
+  Serial.println(fuzzy->isFiredRule(6));
 
 }

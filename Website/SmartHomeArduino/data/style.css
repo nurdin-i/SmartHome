@@ -20,11 +20,43 @@ nav {
   background-color: #393f4d;
 }
 
+.automate {
+  width: 100%;
+  right: 500px;
+}
+
+.activateAutomation {
+  color: #494949 !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: rgb(226, 226, 226);;
+  padding: 10px;
+  border: 4px solid #494949 !important;
+  transition: all 0.4s ease 0s;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 23px;
+  }
+
+.activateAutomation:hover {
+  color: #ffffff !important;
+  background: #22cf0b;
+  border-color: #22cf0b !important;
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
+}
+
 .logo {
   color: rgb(226, 226, 226);
   text-transform: uppercase;
   letter-spacing: 5px;
   font-size: 20px;
+  display: flex;
+  width: 40%;
+  justify-content: space-between;
+}
+
+.logo h4{
+  padding-top: 20px;
 }
 
 .nav-links {
@@ -371,7 +403,7 @@ input:checked+.slider::before {
 input[type="range"] {
   display: block;
   -webkit-appearance: none;
-  background-color: #bdc3c7;
+  background-color: rgb(221, 30, 30);
   width: 200px;
   height: 10px;
   border-radius: 2px;
@@ -594,7 +626,7 @@ input[type="range"]::-webkit-slider-thumb {
     position: fixed;
     right: 0px;
     height: 100%;
-    top: 8vh;
+    top: 0.5vh;
     background-color: rgba(69,87,125,0.88);
     display: flex;
     flex-direction: column;
@@ -793,6 +825,7 @@ input:checked+.slider::before {
 }
 
 .burger {
+  z-index: 5;
   display: block;
   cursor: pointer;
 }

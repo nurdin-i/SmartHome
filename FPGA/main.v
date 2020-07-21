@@ -10,6 +10,7 @@ module main(clk,
 				vent1B,
 				vent2A,
 				vent2B,
+				heater,
 				sensorOutside1,
 				sensorOutside2,
 				beepBuzzer,
@@ -26,6 +27,7 @@ output reg vent1A;
 output reg vent1B;
 output reg vent2A;
 output reg vent2B;
+output reg heater;
 
 output reg garagelight;
 output reg backlight;
@@ -68,6 +70,7 @@ initial begin
 	vent1B <= 1'b0;
 	vent2A <= 1'b0;
 	vent2B <= 1'b0;
+	heater <= 1'b1;
 	beepBuzzer <= 1'b1;
 end
 
@@ -81,63 +84,60 @@ case (rxdata)
 	4: begin
 		alarmSystem = 1'b0;
 		end
-/*
 	7: begin
-			kitchenlight = 1'b1; // palimo kitchenlight
+		kitchenlight = 1'b1; 
 		end
 	8: begin
 			kitchenlight = 1'b0;
 		end
-		*/
 	9: begin
-			livinglight = 1'b1; // palimo kitchenlight
+			livinglight = 1'b1; 
 		end
 	10: begin
 			livinglight = 1'b0;
 		 end
 	11: begin
-			dininglight = 1'b1; // palimo kitchenlight
+			dininglight = 1'b1; 
 		 end
 	12: begin
 			dininglight = 1'b0;
 		 end
 	13: begin
-			frontlight = 1'b1; // palimo kitchenlight
+			frontlight = 1'b1; 
 		 end
 	14: begin
 			frontlight = 1'b0;
 		 end
-		
 	15: begin
-			garagelight = 1'b1; // palimo kitchenlight
+			garagelight = 1'b1; 
 		 end
 	16: begin
 			garagelight = 1'b0;
 		 end
-		
 	17: begin
-			backlight = 1'b1; // palimo kitchenlight
+			backlight = 1'b1; 
 		 end
 	18: begin
 			backlight = 1'b0;
 		 end
-		
-	20: begin
-			vent1A = 1'b1; // palimo kitchenlight
-			vent1B = 1'b0; // palimo kitchenlight
-		 end
-	21: begin
-			vent1A = 1'b0; // palimo kitchenlight
-			vent1B = 1'b0; // palimo kitchenlight
-		end
-	22: begin
-			vent2A = 1'b1; // palimo kitchenlight
-			vent2B = 1'b0; // palimo kitchenlight
+	21: begin //ventilatori upaljeni
+			vent1A = 1'b1; 
+			vent1B = 1'b0; 
+			vent2A = 1'b1; 
+			vent2B = 1'b0; 
 			end
-	23: begin
-			vent2A = 1'b0; // palimo kitchenlight
-			vent2B = 1'b0; // palimo kitchenlight
+	26: begin //ventilatori ugaseni
+			vent1A = 1'b0; 
+			vent1B = 1'b0; 
+			vent2A = 1'b0; 
+			vent2B = 1'b0; 
 		 end
+	31: begin 
+			heater = 1'b0; 
+		 end
+	36: begin
+			heater = 1'b1; 
+		end
 endcase
 end
 
@@ -160,7 +160,7 @@ begin
 if((sensorOutside1 | sensorOutside2) & (alarmSystem))
 	begin
 	statusOutside <= 1'b1; // detektovano nesto, sacekati cemo malo prije nego sto ugasimo diodu i zapocnemo ponovno detektovanje
-	kitchenlight <= 1'b1; //pali diodu
+	//kitchenlight <= 1'b1; //pali diodu
 	beepBuzzer <= 1'b0;
 	end
 else if (statusOutside == 1)
@@ -170,7 +170,7 @@ else if (statusOutside == 1)
 	begin
 	statusOutside <= 1'b0;
 	counterOutside <=0;
-	kitchenlight <=1'b0;
+	//kitchenlight <=1'b0;
 	beepBuzzer <= 1'b1;
 	end
 end

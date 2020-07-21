@@ -1,5 +1,5 @@
 Analysis & Synthesis report for SmartHome
-Sat Feb 29 15:51:28 2020
+Tue Jun 23 23:40:45 2020
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -53,16 +53,16 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Feb 29 15:51:28 2020       ;
+; Analysis & Synthesis Status        ; Successful - Tue Jun 23 23:40:45 2020       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; SmartHome                                   ;
 ; Top-level Entity Name              ; SmartHome                                   ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 302                                         ;
-;     Total combinational functions  ; 277                                         ;
+; Total logic elements               ; 310                                         ;
+;     Total combinational functions  ; 285                                         ;
 ;     Dedicated logic registers      ; 173                                         ;
 ; Total registers                    ; 173                                         ;
-; Total pins                         ; 21                                          ;
+; Total pins                         ; 22                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -169,7 +169,8 @@ refer to the applicable agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-4         ;   0.1%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-4         ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -191,29 +192,29 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 302       ;
+; Estimated Total logic elements              ; 310       ;
 ;                                             ;           ;
-; Total combinational functions               ; 277       ;
+; Total combinational functions               ; 285       ;
 ; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 127       ;
-;     -- 3 input functions                    ; 22        ;
-;     -- <=2 input functions                  ; 128       ;
+;     -- 4 input functions                    ; 128       ;
+;     -- 3 input functions                    ; 27        ;
+;     -- <=2 input functions                  ; 130       ;
 ;                                             ;           ;
 ; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 175       ;
+;     -- normal mode                          ; 183       ;
 ;     -- arithmetic mode                      ; 102       ;
 ;                                             ;           ;
 ; Total registers                             ; 173       ;
 ;     -- Dedicated logic registers            ; 173       ;
 ;     -- I/O registers                        ; 0         ;
 ;                                             ;           ;
-; I/O pins                                    ; 21        ;
+; I/O pins                                    ; 22        ;
 ;                                             ;           ;
 ; Embedded Multiplier 9-bit elements          ; 0         ;
 ;                                             ;           ;
 ; Maximum fan-out node                        ; clk~input ;
 ; Maximum fan-out                             ; 173       ;
-; Total fan-out                               ; 1350      ;
+; Total fan-out                               ; 1375      ;
 ; Average fan-out                             ; 2.74      ;
 +---------------------------------------------+-----------+
 
@@ -223,9 +224,9 @@ refer to the applicable agreement for further details.
 +----------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------+---------------+--------------+
 ; Compilation Hierarchy Node       ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                    ; Entity Name   ; Library Name ;
 +----------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------+---------------+--------------+
-; |SmartHome                       ; 277 (0)             ; 173 (0)                   ; 0           ; 0            ; 0       ; 0         ; 21   ; 0            ; |SmartHome                             ; SmartHome     ; work         ;
+; |SmartHome                       ; 285 (0)             ; 173 (0)                   ; 0           ; 0            ; 0       ; 0         ; 22   ; 0            ; |SmartHome                             ; SmartHome     ; work         ;
 ;    |baud_rate_gen:BAUD_RATE_GEN| ; 17 (17)             ; 9 (9)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SmartHome|baud_rate_gen:BAUD_RATE_GEN ; baud_rate_gen ; work         ;
-;    |main:MAIN|                   ; 169 (169)           ; 106 (106)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SmartHome|main:MAIN                   ; main          ; work         ;
+;    |main:MAIN|                   ; 177 (177)           ; 106 (106)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SmartHome|main:MAIN                   ; main          ; work         ;
 ;    |reciever:RECIEVER|           ; 51 (51)             ; 28 (28)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SmartHome|reciever:RECIEVER           ; reciever      ; work         ;
 ;    |transmitter:TRANSMITTER|     ; 40 (40)             ; 30 (30)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SmartHome|transmitter:TRANSMITTER     ; transmitter   ; work         ;
 +----------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------+---------------+--------------+
@@ -263,19 +264,20 @@ Encoding Type:  One-Hot
 +----------------------------------------+---------------------------------------------------+
 ; Register name                          ; Reason for Removal                                ;
 +----------------------------------------+---------------------------------------------------+
-; main:MAIN|vent1B                       ; Stuck at GND due to stuck port data_in            ;
 ; main:MAIN|vent2B                       ; Stuck at GND due to stuck port data_in            ;
+; main:MAIN|vent1B                       ; Stuck at GND due to stuck port data_in            ;
 ; main:MAIN|impuls[4,5,16]               ; Merged with main:MAIN|impuls[14]                  ;
 ; main:MAIN|impuls[6,7,9..11]            ; Merged with main:MAIN|impuls[13]                  ;
 ; main:MAIN|impuls[0..2,17..25]          ; Merged with main:MAIN|impuls[12]                  ;
 ; main:MAIN|impuls[3,15]                 ; Merged with main:MAIN|impuls[8]                   ;
+; main:MAIN|vent2A                       ; Merged with main:MAIN|vent1A                      ;
 ; main:MAIN|impuls[12]                   ; Stuck at GND due to stuck port data_in            ;
 ; main:MAIN|impuls[8]                    ; Stuck at VCC due to stuck port data_in            ;
 ; main:MAIN|impuls[14]                   ; Merged with main:MAIN|impuls[13]                  ;
 ; transmitter:TRANSMITTER|r_SM_Main~2    ; Lost fanout                                       ;
 ; transmitter:TRANSMITTER|r_SM_Main~3    ; Lost fanout                                       ;
 ; main:MAIN|brojacSlanje[0]              ; Merged with baud_rate_gen:BAUD_RATE_GEN|rx_acc[0] ;
-; Total Number of Removed Registers = 30 ;                                                   ;
+; Total Number of Removed Registers = 31 ;                                                   ;
 +----------------------------------------+---------------------------------------------------+
 
 
@@ -300,7 +302,8 @@ Encoding Type:  One-Hot
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
 ; main:MAIN|beepBuzzer                   ; 2       ;
-; Total number of inverted registers = 1 ;         ;
+; main:MAIN|heater                       ; 3       ;
+; Total number of inverted registers = 2 ;         ;
 +----------------------------------------+---------+
 
 
@@ -309,10 +312,10 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                           ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |SmartHome|main:MAIN|impuls[14]                      ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |SmartHome|reciever:RECIEVER|bitpos[0]               ;
-; 6:1                ; 4 bits    ; 16 LEs        ; 4 LEs                ; 12 LEs                 ; Yes        ; |SmartHome|reciever:RECIEVER|sample[3]               ;
-; 4:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |SmartHome|transmitter:TRANSMITTER|r_Clock_Count[12] ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |SmartHome|main:MAIN|impuls[8]                       ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |SmartHome|reciever:RECIEVER|bitpos[2]               ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 4 LEs                ; 12 LEs                 ; Yes        ; |SmartHome|reciever:RECIEVER|sample[1]               ;
+; 4:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |SmartHome|transmitter:TRANSMITTER|r_Clock_Count[10] ;
 ; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |SmartHome|transmitter:TRANSMITTER|r_Bit_Index       ;
 ; 7:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |SmartHome|reciever:RECIEVER|state                   ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
@@ -380,24 +383,24 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 21                          ;
+; boundary_port         ; 22                          ;
 ; cycloneiii_ff         ; 173                         ;
 ;     ENA               ; 31                          ;
 ;     ENA SCLR          ; 45                          ;
 ;     SCLR              ; 26                          ;
 ;     plain             ; 71                          ;
-; cycloneiii_lcell_comb ; 279                         ;
+; cycloneiii_lcell_comb ; 288                         ;
 ;     arith             ; 102                         ;
 ;         2 data inputs ; 102                         ;
-;     normal            ; 177                         ;
+;     normal            ; 186                         ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 8                           ;
-;         2 data inputs ; 19                          ;
-;         3 data inputs ; 22                          ;
-;         4 data inputs ; 127                         ;
+;         1 data inputs ; 9                           ;
+;         2 data inputs ; 21                          ;
+;         3 data inputs ; 27                          ;
+;         4 data inputs ; 128                         ;
 ;                       ;                             ;
-; Max LUT depth         ; 8.50                        ;
-; Average LUT depth     ; 4.18                        ;
+; Max LUT depth         ; 8.10                        ;
+; Average LUT depth     ; 4.00                        ;
 +-----------------------+-----------------------------+
 
 
@@ -406,7 +409,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:02     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -416,7 +419,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Sat Feb 29 15:51:13 2020
+    Info: Processing started: Tue Jun 23 23:40:33 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off SmartHome -c SmartHome
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -433,15 +436,15 @@ Info (12021): Found 1 design units, including 1 entities, in source file transmi
 Info (12021): Found 1 design units, including 1 entities, in source file output_files/uart_rx.v
     Info (12023): Found entity 1: UART_RX File: E:/SmartHomeSystem/FPGA/output_files/UART_RX.v Line: 1
 Info (12127): Elaborating entity "SmartHome" for the top level hierarchy
-Warning (10034): Output port "recieveLine" at SmartHome.v(23) has no driver File: E:/SmartHomeSystem/FPGA/SmartHome.v Line: 23
-Info (12128): Elaborating entity "main" for hierarchy "main:MAIN" File: E:/SmartHomeSystem/FPGA/SmartHome.v Line: 50
-Warning (10230): Verilog HDL assignment warning at main.v(57): truncated value with size 26 to match size of target (1) File: E:/SmartHomeSystem/FPGA/main.v Line: 57
+Warning (10034): Output port "recieveLine" at SmartHome.v(24) has no driver File: E:/SmartHomeSystem/FPGA/SmartHome.v Line: 24
+Info (12128): Elaborating entity "main" for hierarchy "main:MAIN" File: E:/SmartHomeSystem/FPGA/SmartHome.v Line: 52
+Warning (10230): Verilog HDL assignment warning at main.v(59): truncated value with size 26 to match size of target (1) File: E:/SmartHomeSystem/FPGA/main.v Line: 59
 Warning (10230): Verilog HDL assignment warning at main.v(147): truncated value with size 32 to match size of target (27) File: E:/SmartHomeSystem/FPGA/main.v Line: 147
-Warning (10136): Verilog HDL Module Declaration warning at main.v(15): port "beepBuzzer" already exists in the list of ports File: E:/SmartHomeSystem/FPGA/main.v Line: 15
-Warning (10034): Output port "dataValidRX" at main.v(49) has no driver File: E:/SmartHomeSystem/FPGA/main.v Line: 49
-Info (12128): Elaborating entity "baud_rate_gen" for hierarchy "baud_rate_gen:BAUD_RATE_GEN" File: E:/SmartHomeSystem/FPGA/SmartHome.v Line: 55
-Info (12128): Elaborating entity "reciever" for hierarchy "reciever:RECIEVER" File: E:/SmartHomeSystem/FPGA/SmartHome.v Line: 64
-Info (12128): Elaborating entity "transmitter" for hierarchy "transmitter:TRANSMITTER" File: E:/SmartHomeSystem/FPGA/SmartHome.v Line: 72
+Warning (10136): Verilog HDL Module Declaration warning at main.v(16): port "beepBuzzer" already exists in the list of ports File: E:/SmartHomeSystem/FPGA/main.v Line: 16
+Warning (10034): Output port "dataValidRX" at main.v(51) has no driver File: E:/SmartHomeSystem/FPGA/main.v Line: 51
+Info (12128): Elaborating entity "baud_rate_gen" for hierarchy "baud_rate_gen:BAUD_RATE_GEN" File: E:/SmartHomeSystem/FPGA/SmartHome.v Line: 57
+Info (12128): Elaborating entity "reciever" for hierarchy "reciever:RECIEVER" File: E:/SmartHomeSystem/FPGA/SmartHome.v Line: 66
+Info (12128): Elaborating entity "transmitter" for hierarchy "transmitter:TRANSMITTER" File: E:/SmartHomeSystem/FPGA/SmartHome.v Line: 74
 Warning (10036): Verilog HDL or VHDL warning at transmitter.v(23): object "r_TX_Active" assigned a value but never read File: E:/SmartHomeSystem/FPGA/transmitter.v Line: 23
 Warning (10230): Verilog HDL assignment warning at transmitter.v(56): truncated value with size 32 to match size of target (13) File: E:/SmartHomeSystem/FPGA/transmitter.v Line: 56
 Warning (10230): Verilog HDL assignment warning at transmitter.v(74): truncated value with size 32 to match size of target (13) File: E:/SmartHomeSystem/FPGA/transmitter.v Line: 74
@@ -451,21 +454,21 @@ Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "vent1B" is stuck at GND File: E:/SmartHomeSystem/FPGA/SmartHome.v Line: 16
     Warning (13410): Pin "vent2B" is stuck at GND File: E:/SmartHomeSystem/FPGA/SmartHome.v Line: 18
-    Warning (13410): Pin "recieveLine" is stuck at GND File: E:/SmartHomeSystem/FPGA/SmartHome.v Line: 23
+    Warning (13410): Pin "recieveLine" is stuck at GND File: E:/SmartHomeSystem/FPGA/SmartHome.v Line: 24
 Info (286030): Timing-Driven Synthesis is running
 Info (17049): 2 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file E:/SmartHomeSystem/FPGA/output_files/SmartHome.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 339 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 348 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 5 input pins
-    Info (21059): Implemented 16 output pins
-    Info (21061): Implemented 318 logic cells
+    Info (21059): Implemented 17 output pins
+    Info (21061): Implemented 326 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 16 warnings
-    Info: Peak virtual memory: 4768 megabytes
-    Info: Processing ended: Sat Feb 29 15:51:28 2020
-    Info: Elapsed time: 00:00:15
-    Info: Total CPU time (on all processors): 00:00:21
+    Info: Peak virtual memory: 4771 megabytes
+    Info: Processing ended: Tue Jun 23 23:40:45 2020
+    Info: Elapsed time: 00:00:12
+    Info: Total CPU time (on all processors): 00:00:23
 
 
 +------------------------------------------+

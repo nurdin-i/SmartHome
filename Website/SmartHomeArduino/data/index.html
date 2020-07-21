@@ -17,12 +17,15 @@
   <nav>
     <div class="logo">
       <h4> SMART HOME </h4>
+      <div id="automate"> 
+      <button class="activateAutomation" type="button" onclick="activateRegulation(this)">Activate Regulation</button>
+    </div>
     </div>
     <ul class="nav-links">
       <li><a href="/index.html">Home</a></li>
       <li><a href="/data.html">Data</a></li>
-      <li><a href="/monitoring.html">Monitoring</a></li>
-      <li><a href="#">Rest</a></li>
+      <li><a href="/monitoring.html">Mobile</a></li>
+      <li><a href="https://smarthomedata.000webhostapp.com/esp-data.php">Monitoring</a></li>
     </ul>
     <div class="burger">
       <div class="line1"></div>
@@ -66,7 +69,6 @@
     </div>
   </div>
   </div>
-
 
   <!--  Uppersection contains Security System and Garage Doors buttons  -->
   <section class="uppersection">
@@ -235,27 +237,27 @@
 
   <section class="bottomsection">
     <div class="itemupper">
-      <img id="lightClick7" src="https://i.imgur.com/RNcVo8R.png" alt="LivingRoomVent">
+      <img id="lightClick7" src="https://i.imgur.com/RNcVo8R.png" alt="Ventilator">
       <div class="divtext">
-        <h3> Living Room - Ventilator </h3>
+        <h3> Ventilator </h3>
         <p id="textClick7"> Off </p>
       </div>
       <div class="switcharo">
         <label class="lightswitch">
-          <input type="checkbox" onclick="turnLivingVent(this)">
+          <input type="checkbox" onclick="turnVentOn(this)">
           <span class="slider round"></span>
         </label>
       </div>
     </div>
     <div class="itemupper">
-      <img id="lightClick8" src="https://i.imgur.com/RNcVo8R.png" alt="DiningRoomVent">
+      <img id="lightClick8" src=" https://i.imgur.com/2oMFEVz.png" alt="Heater">
       <div class="divtext">
-        <h3> Dining Room - Ventilator </h3>
+        <h3> Heater </h3>
         <p id="textClick8"> Off </p>
       </div>
       <div class="switcharo">
         <label class="lightswitch">
-          <input type="checkbox" onclick="turnDivingVent(this)">
+          <input type="checkbox" onclick="turnHeaterOn(this)">
           <span class="slider round"></span>
         </label>
       </div>

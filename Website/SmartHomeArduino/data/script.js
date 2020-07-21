@@ -26,9 +26,7 @@ const app = () => {
 
 app();
 
-
 var elem = document.querySelector('input[type="range"]');
-
 var rangeValue = function(){
   var newValue = elem.value;
   var target = document.querySelector('.value');
@@ -51,31 +49,12 @@ function changeText(lightClick, textClick, bool){
   }
 }
 
-
 /*
 HTTP request explained: 
 First create a variable for that new HTTPrequest.
 Then with javascript, see if element is 'checked'. If it's checked, open GET request with specific parameter and value. Same goes if it's not checked.
 When if/else is completed, xhr.send() sends that request to our Arduino code. With server.on(/URLOFGETREQUEST), we can catch that parameter and value and send it to FPGA.
 
-
-
-//turn AlarmSystem on
-function turnAlarmSystem(element){
-  var xhr = new XMLHttpRequest();
-  const alarmSystemText = document.getElementById('alarmSystemText');
-  if (element.checked){
-    xhr.open("GET", "/alarmsystem?alarm=" + 3, true);
-    alarmSystemText.innerHTML = 'Activated';
-    alarmSystemText.classList.add('active-text');
-  }
-  else if (!element.checked) {
-    xhr.open("GET", "/alarmsystem?alarm=" + 4, true);
-    alarmSystemText.innerHTML = 'Deactivated';
-    alarmSystemText.classList.remove('active-text');
-  }
-  xhr.send();
-}
 */
 
 function changeTemperature(){
@@ -84,8 +63,23 @@ function changeTemperature(){
   xhr.open("GET", "/changeTemperature?temperatureValue=" + rangeValue.value, true);
   xhr.send();
 }
+var status = 0;
+function activateRegulation(element) {
+  var xhr = new XMLHttpRequest();
+  const range = document.getElementById('range');
+  if(status==0){
+    xhr.open("GET", "/activateRegulation?regulation=" + 50, true);
+    range.style.backgroundColor = "#bdc3c7";
+    status = 1;
+  }
+  else {
+    xhr.open("GET", "/activateRegulation?regulation=" + 51, true);
+    range.style.backgroundColor = "rgb(221, 30, 30)"
+    status = 0;
+  }
+  xhr.send();
+}
 
-//turn kitchen light on
 function turnAlarmSystem(element) {
   var xhr = new XMLHttpRequest();
   const alarmSystemText = document.getElementById('alarmSystemText');
@@ -118,7 +112,6 @@ function openGarageDoors(element){
   xhr.send();
 }
 
-//turn kitchen light on
 function turnKitchenLight(element) {
   var xhr = new XMLHttpRequest();
   const lightClick = document.getElementById('lightClick1');
@@ -133,7 +126,6 @@ function turnKitchenLight(element) {
   xhr.send();
 }
 
-//turn kitchen light on
 function turnLivingLight(element) {
   var xhr = new XMLHttpRequest();
   const lightClick = document.getElementById('lightClick2');
@@ -148,7 +140,6 @@ function turnLivingLight(element) {
   xhr.send();
 }
 
-//turn kitchen light on
 function turnDiningLight(element) {
   var xhr = new XMLHttpRequest();
   const lightClick = document.getElementById('lightClick3');
@@ -163,8 +154,6 @@ function turnDiningLight(element) {
   xhr.send();
 }
 
-
-//turn kitchen light on
 function turnFrontLight(element) {
   var xhr = new XMLHttpRequest();
   const lightClick = document.getElementById('lightClick4');
@@ -179,7 +168,6 @@ function turnFrontLight(element) {
   xhr.send();
 }
 
-//turn kitchen light on
 function turnGarageLight(element) {
   var xhr = new XMLHttpRequest();
   const lightClick = document.getElementById('lightClick5');
@@ -194,8 +182,6 @@ function turnGarageLight(element) {
   xhr.send();
 }
 
-
-//turn kitchen light on
 function turnBackLight(element) {
   var xhr = new XMLHttpRequest();
   const lightClick = document.getElementById('lightClick6');
@@ -209,7 +195,6 @@ function turnBackLight(element) {
   }
   xhr.send();
 }
-
 
 function turnALLONIn(element){
   var kitchenCheck = document.getElementById('kitchenCheck');
@@ -225,7 +210,6 @@ function turnALLONIn(element){
   turnDiningLight(diningCheck);
 }
 
-
 function turnALLOFFIn(element){
   var kitchenCheck = document.getElementById('kitchenCheck');
   kitchenCheck.checked = false;
@@ -239,7 +223,6 @@ function turnALLOFFIn(element){
   diningCheck.checked = false;
   turnDiningLight(diningCheck);
 }
-
 
 function turnALLONOut(element){
   var frontCheck = document.getElementById('frontCheck');
@@ -255,7 +238,6 @@ function turnALLONOut(element){
   turnBackLight(backCheck);
 }
 
-
 function turnALLOFFOut(element){
   var frontCheck = document.getElementById('frontCheck');
   frontCheck.checked = false;
@@ -270,20 +252,17 @@ function turnALLOFFOut(element){
   turnBackLight(backCheck);
 }
 
-
-
-//turn kitchen light on
-function turnLivingVent(element) {
+function turnVentOn(element) {
   var xhr = new XMLHttpRequest();
   const lightClick = document.getElementById('lightClick7');
   const textClick = document.getElementById('textClick7');
   if (element.checked) {
-    xhr.open("GET", "/backlight?back=" + 20, true);
+    xhr.open("GET", "/ventON?vent=" + 21, true);
     textClick.classList.add('active-text');
     textClick.innerHTML = 'On';
     lightClick.src = "https://thumbs.gfycat.com/GlamorousWaterloggedAntelope-size_restricted.gif";
   } else if (!element.checked) {
-    xhr.open("GET", "/backlight?back=" + 21, true);
+    xhr.open("GET", "/ventON?vent=" + 22, true);
     textClick.classList.remove('active-text');
     textClick.innerHTML = 'Off';
     lightClick.src = "https://i.imgur.com/RNcVo8R.png";
@@ -291,28 +270,23 @@ function turnLivingVent(element) {
   xhr.send();
 }
 
-
-
-//turn kitchen light on
-function turnDivingVent(element) {
+function turnHeaterOn(element) {
   var xhr = new XMLHttpRequest();
   const lightClick = document.getElementById('lightClick8');
   const textClick = document.getElementById('textClick8');
   if (element.checked) {
-    xhr.open("GET", "/backlight?back=" + 22, true);
+    xhr.open("GET", "/heaterON?heater=" + 31, true);
     textClick.classList.add('active-text');
     textClick.innerHTML = 'On';
-    lightClick.src = "https://thumbs.gfycat.com/GlamorousWaterloggedAntelope-size_restricted.gif";
+    lightClick.src = "https://i.imgur.com/cFour2c.png";
   } else if (!element.checked) {
-    xhr.open("GET", "/backlight?back=" + 23, true);
+    xhr.open("GET", "/heaterON?heater=" + 32, true);
     textClick.classList.remove('active-text');
     textClick.innerHTML = 'Off';
-    lightClick.src = "https://i.imgur.com/RNcVo8R.png";
+    lightClick.src = "https://i.imgur.com/2oMFEVz.png";
   }
   xhr.send();
 }
-
-
 
 // function that sends HTTP request for /temperature which reads the data on DHT sensor
 setInterval(function ( ) {
@@ -332,7 +306,7 @@ setInterval(function ( ) {
   };
   xhttp.open("GET", "/temperature", true);
   xhttp.send();
-}, 20000 ) ;
+}, 40000 ) ;
 
 
 
@@ -354,7 +328,7 @@ setInterval(function ( ) {
   };
   xhttp.open("GET", "/humidity", true);
   xhttp.send();
-}, 21000 ) ;
+}, 40000 ) ;
 
 // function that sends HTTP request for /outsidetemperature which reads the data on DHT sensor
 setInterval(function ( ) {
@@ -374,7 +348,7 @@ setInterval(function ( ) {
   };
   xhttp.open("GET", "/temperatureOUT", true);
   xhttp.send();
-}, 22000 ) ;
+}, 40000 ) ;
 
 
 // function that sends HTTP request for /pressure which reads the data on DHT sensor
@@ -395,6 +369,6 @@ setInterval(function ( ) {
   };
   xhttp.open("GET", "/humidityOUT", true);
   xhttp.send();
-}, 23000 ) ;
+}, 40000 ) ;
 
 

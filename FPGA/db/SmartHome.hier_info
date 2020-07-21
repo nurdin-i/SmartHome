@@ -16,6 +16,7 @@ vent1A << main:MAIN.vent1A
 vent1B << main:MAIN.vent1B
 vent2A << main:MAIN.vent2A
 vent2B << main:MAIN.vent2B
+heater << main:MAIN.heater
 backlight << main:MAIN.backlight
 rxclk << rxclk.DB_MAX_OUTPUT_PORT_TYPE
 transmitLine << transmitter:TRANSMITTER.o_TX_Serial
@@ -109,7 +110,6 @@ clk => counterOutside[29].CLK
 clk => counterOutside[30].CLK
 clk => counterOutside[31].CLK
 clk => beepBuzzer~reg0.CLK
-clk => kitchenlight~reg0.CLK
 clk => statusOutside.CLK
 clk => dataValid~reg0.CLK
 clk => txdata[0]~reg0.CLK
@@ -148,15 +148,17 @@ clk => brojacSlanje[24].CLK
 clk => brojacSlanje[25].CLK
 clk => brojacSlanje[26].CLK
 clk => alarmSystem.CLK
+clk => kitchenlight~reg0.CLK
 clk => livinglight~reg0.CLK
 clk => dininglight~reg0.CLK
 clk => frontlight~reg0.CLK
 clk => garagelight~reg0.CLK
 clk => backlight~reg0.CLK
-clk => vent1B~reg0.CLK
-clk => vent1A~reg0.CLK
 clk => vent2B~reg0.CLK
 clk => vent2A~reg0.CLK
+clk => vent1B~reg0.CLK
+clk => vent1A~reg0.CLK
+clk => heater~reg0.CLK
 kitchenlight <= kitchenlight~reg0.DB_MAX_OUTPUT_PORT_TYPE
 livinglight <= livinglight~reg0.DB_MAX_OUTPUT_PORT_TYPE
 dininglight <= dininglight~reg0.DB_MAX_OUTPUT_PORT_TYPE
@@ -168,6 +170,7 @@ vent1A <= vent1A~reg0.DB_MAX_OUTPUT_PORT_TYPE
 vent1B <= vent1B~reg0.DB_MAX_OUTPUT_PORT_TYPE
 vent2A <= vent2A~reg0.DB_MAX_OUTPUT_PORT_TYPE
 vent2B <= vent2B~reg0.DB_MAX_OUTPUT_PORT_TYPE
+heater <= heater~reg0.DB_MAX_OUTPUT_PORT_TYPE
 sensorOutside1 => always2.IN0
 sensorOutside2 => always2.IN1
 beepBuzzer__duplicate <= beepBuzzer~reg0.DB_MAX_OUTPUT_PORT_TYPE

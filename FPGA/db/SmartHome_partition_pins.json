@@ -44,6 +44,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "heater",
+					"strict" : false
+				},
+				{
 					"name" : "backlight",
 					"strict" : false
 				},
